@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="LVS-DR原理介绍和配置实践">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LVS-DR 原理介绍和配置实践">
-<meta property="og:url" content="https://wsgzao.github.io/post/lvs-dr/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/lvs-dr/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="LVS-DR原理介绍和配置实践">
 <meta property="og:locale" content="zh-CN">
@@ -124,7 +124,7 @@
 <p>LVS-DR 原理介绍和配置实践</p>
 </blockquote>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2020 年 04 月 20 日 - 增加 Keepalived 双活实践<br>2019 年 09 月 03 日 - 拆分 LVS-Keepalived 中 LVS-DR<br>2019 年 08 月 23 日 - 更新 LVS/NAT、LVS/DR、LVS/TUN 三种模式的原理和配置实践<br>2018 年 12 月 03 日 - 精简和更新配置步骤<br>2018 年 07 月 31 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/lvs-nat/">https://wsgzao.github.io/post/lvs-nat/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/lvs-nat/">https://liaojiaxin158.github.io/post/lvs-nat/</a></p>
 <p><strong> 扩展阅读 </strong></p>
 <p>LVS - <a href="http://www.linuxvirtualserver.org/zh/index.html" target="_blank" rel="noopener">http://www.linuxvirtualserver.org/zh/index.html</a><br>Keepalived - <a href="http://www.keepalived.org/" target="_blank" rel="noopener">http://www.keepalived.org/</a></p>
 <hr>
@@ -347,7 +347,7 @@
 <p>sendmail.py</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">EMAIL_CONFIG = &#123;</span><br><span class="line">    <span class="string">'EMAIL_HOST'</span>: <span class="string">'xxx'</span>,</span><br><span class="line">    <span class="string">'EMAIL_HOST_USER'</span>: <span class="string">'xxx'</span>,</span><br><span class="line">    <span class="string">'EMAIL_RECEIVER'</span>: <span class="string">'xxx'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_get_private_ip</span><span class="params">()</span>:</span></span><br><span class="line">    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        sock.connect((<span class="string">'10.255.255.255'</span>, <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> sock.getsockname()[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'127.0.0.1'</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        sock.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_email</span><span class="params">()</span>:</span></span><br><span class="line">    ip = _get_private_ip()</span><br><span class="line">    hostname = socket.gethostname()</span><br><span class="line">    message = <span class="string">'Subject: Keepalived Failover Alert %s \n\nHOSTNAME %s on LANIP %s %s %s status has changed to %s'</span> % (</span><br><span class="line">        sys.argv[<span class="number">1</span>], hostname, ip, sys.argv[<span class="number">2</span>], sys.argv[<span class="number">3</span>], sys.argv[<span class="number">1</span>])</span><br><span class="line">    server = smtplib.SMTP(EMAIL_CONFIG[<span class="string">"EMAIL_HOST"</span>])</span><br><span class="line">    server.sendmail(EMAIL_CONFIG[<span class="string">'EMAIL_HOST_USER'</span>],</span><br><span class="line">                    EMAIL_CONFIG[<span class="string">'EMAIL_RECEIVER'</span>], message)</span><br><span class="line">    server.quit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">send_email()</span><br></pre></td></tr></table></figure>
-<h2 id="LVS-和-Keepalived-系列"><a href="#LVS-和-Keepalived-系列" class="headerlink" title="LVS 和 Keepalived 系列"></a>LVS 和 Keepalived 系列</h2><p><a href="https://wsgzao.github.io/post/lvs-keepalived/">LVS 和 Keepalived 的原理介绍和配置实践</a><br><a href="https://wsgzao.github.io/post/lvs/">LVS 原理介绍和配置实践</a><br><a href="https://wsgzao.github.io/post/keepalived/">Keepalived 原理介绍和配置实践</a><br><a href="https://wsgzao.github.io/post/lvs-nat/">LVS-NAT 原理介绍和配置实践</a><br><a href="https://wsgzao.github.io/post/lvs-dr/">LVS-DR 原理介绍和配置实践</a><br><a href="https://wsgzao.github.io/post/lvs-tun/">LVS-TUN 原理介绍和配置实践</a></p>
+<h2 id="LVS-和-Keepalived-系列"><a href="#LVS-和-Keepalived-系列" class="headerlink" title="LVS 和 Keepalived 系列"></a>LVS 和 Keepalived 系列</h2><p><a href="https://liaojiaxin158.github.io/post/lvs-keepalived/">LVS 和 Keepalived 的原理介绍和配置实践</a><br><a href="https://liaojiaxin158.github.io/post/lvs/">LVS 原理介绍和配置实践</a><br><a href="https://liaojiaxin158.github.io/post/keepalived/">Keepalived 原理介绍和配置实践</a><br><a href="https://liaojiaxin158.github.io/post/lvs-nat/">LVS-NAT 原理介绍和配置实践</a><br><a href="https://liaojiaxin158.github.io/post/lvs-dr/">LVS-DR 原理介绍和配置实践</a><br><a href="https://liaojiaxin158.github.io/post/lvs-tun/">LVS-TUN 原理介绍和配置实践</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -365,7 +365,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/lvs-dr/" data-title="LVS-DR 原理介绍和配置实践 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/lvs-dr/" data-title="LVS-DR 原理介绍和配置实践 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -715,7 +715,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

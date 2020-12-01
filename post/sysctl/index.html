@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="sysctl.conf和limits.conf学习和调优">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sysctl.conf 和 limits.conf 学习和调优">
-<meta property="og:url" content="https://wsgzao.github.io/post/sysctl/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/sysctl/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="sysctl.conf和limits.conf学习和调优">
 <meta property="og:locale" content="zh-CN">
@@ -122,9 +122,9 @@
 </blockquote>
 <hr>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2019 年 05 月 13 日 - 更新 limits.conf 的最佳实践<br>2015 年 08 月 10 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/sysctl/">https://wsgzao.github.io/post/sysctl/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/sysctl/">https://liaojiaxin158.github.io/post/sysctl/</a></p>
 <p>扩展阅读</p>
-<p>设置 Sysctl.conf 用以提高 Linux 的性能(最完整的 sysctl.conf 优化方案) - <a href="http://blog.csdn.net/21aspnet/article/details/6584792" target="_blank" rel="noopener">http://blog.csdn.net/21aspnet/article/details/6584792</a><br>limits.conf 工作原理 - <a href="http://my.oschina.net/987openlab/blog/94634" target="_blank" rel="noopener">http://my.oschina.net/987openlab/blog/94634</a><br>ulimit 命令 - <a href="http://man.linuxde.net/ulimit" target="_blank" rel="noopener">http://man.linuxde.net/ulimit</a><br>Sysctl 学习 - <a href="http://pengyao.org/sysctl-1.html" target="_blank" rel="noopener">http://pengyao.org/sysctl-1.html</a><br>Kernel sysctl configuration file for Linux - <a href="https://klaver.it/linux/sysctl.conf" target="_blank" rel="noopener">https://klaver.it/linux/sysctl.conf</a><br>LTMP 索引 - <a href="https://wsgzao.github.io/index/#LTMP">https://wsgzao.github.io/index/#LTMP</a></p>
+<p>设置 Sysctl.conf 用以提高 Linux 的性能(最完整的 sysctl.conf 优化方案) - <a href="http://blog.csdn.net/21aspnet/article/details/6584792" target="_blank" rel="noopener">http://blog.csdn.net/21aspnet/article/details/6584792</a><br>limits.conf 工作原理 - <a href="http://my.oschina.net/987openlab/blog/94634" target="_blank" rel="noopener">http://my.oschina.net/987openlab/blog/94634</a><br>ulimit 命令 - <a href="http://man.linuxde.net/ulimit" target="_blank" rel="noopener">http://man.linuxde.net/ulimit</a><br>Sysctl 学习 - <a href="http://pengyao.org/sysctl-1.html" target="_blank" rel="noopener">http://pengyao.org/sysctl-1.html</a><br>Kernel sysctl configuration file for Linux - <a href="https://klaver.it/linux/sysctl.conf" target="_blank" rel="noopener">https://klaver.it/linux/sysctl.conf</a><br>LTMP 索引 - <a href="https://liaojiaxin158.github.io/index/#LTMP">https://liaojiaxin158.github.io/index/#LTMP</a></p>
 <hr>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="limits-conf-工作原理"><a href="#limits-conf-工作原理" class="headerlink" title="limits.conf 工作原理"></a>limits.conf 工作原理</h3><p>limits.conf 是 <code>pam_limits.so</code> 的配置文件，然后 <code>/etc/pam.d/</code> 下的应用程序调用 <code>pam_***.so</code> 模块。譬如说，当用户访问服务器，服务程序将请求发送到 PAM 模块，PAM 模块根据服务名称在 <code>/etc/pam.d</code> 目录下选择一个对应的服务文件，然后根据服务文件的内容选择具体的 PAM 模块进行处理。</p>
 <h3 id="limits-conf-文件格式"><a href="#limits-conf-文件格式" class="headerlink" title="limits.conf 文件格式"></a>limits.conf 文件格式</h3><pre><code>username|@groupname   type  resource  limit 
@@ -173,7 +173,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/sysctl/" data-title="sysctl.conf 和 limits.conf 学习和调优 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/sysctl/" data-title="sysctl.conf 和 limits.conf 学习和调优 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -523,7 +523,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

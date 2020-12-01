@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="ethtool原理介绍和解决网卡丢包排查思路">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ethtool 原理介绍和解决网卡丢包排查思路">
-<meta property="og:url" content="https://wsgzao.github.io/post/ethtool/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/ethtool/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="ethtool原理介绍和解决网卡丢包排查思路">
 <meta property="og:locale" content="zh-CN">
@@ -120,9 +120,9 @@
 		
 		</div>
 		 -->
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前记录过处理因为 LVS 网卡流量负载过高导致软中断发生丢包的问题，<a href="https://wsgzao.github.io/post/rps/">RPS 和 RFS 网卡多队列性能调优实践</a>，对一般人来说压力不大的情况下其实碰见的概率并不高。这次想分享的话题是比较常见服务器网卡丢包现象排查思路，如果你是想了解点对点的丢包解决思路涉及面可能就比较广，不妨先参考之前的文章 <a href="https://wsgzao.github.io/post/mtr/">如何使用 MTR 诊断网络问题</a>，对于 Linux 常用的网卡丢包分析工具自然是 ethtool。</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前记录过处理因为 LVS 网卡流量负载过高导致软中断发生丢包的问题，<a href="https://liaojiaxin158.github.io/post/rps/">RPS 和 RFS 网卡多队列性能调优实践</a>，对一般人来说压力不大的情况下其实碰见的概率并不高。这次想分享的话题是比较常见服务器网卡丢包现象排查思路，如果你是想了解点对点的丢包解决思路涉及面可能就比较广，不妨先参考之前的文章 <a href="https://liaojiaxin158.github.io/post/mtr/">如何使用 MTR 诊断网络问题</a>，对于 Linux 常用的网卡丢包分析工具自然是 ethtool。</p>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2020 年 06 月 22 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/ethtool/">https://wsgzao.github.io/post/ethtool/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/ethtool/">https://liaojiaxin158.github.io/post/ethtool/</a></p>
 <hr>
 <h2 id="ethtool-简介"><a href="#ethtool-简介" class="headerlink" title="ethtool 简介"></a>ethtool 简介</h2><p>ethtool - utility for controlling network drivers and hardware</p>
 <p>ethtool is the standard Linux utility for controlling network drivers and hardware, particularly for wired Ethernet devices. It can be used to:</p>
@@ -259,7 +259,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/ethtool/" data-title="ethtool 原理介绍和解决网卡丢包排查思路 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/ethtool/" data-title="ethtool 原理介绍和解决网卡丢包排查思路 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -609,7 +609,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

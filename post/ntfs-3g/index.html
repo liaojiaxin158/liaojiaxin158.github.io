@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="Open Source NTFS-3G，Read-Write NTFS Driver">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 使用 ntfs-3g 挂载 NTFS 最佳实践">
-<meta property="og:url" content="https://wsgzao.github.io/post/ntfs-3g/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/ntfs-3g/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="Open Source NTFS-3G，Read-Write NTFS Driver">
 <meta property="og:locale" content="zh-CN">
@@ -121,7 +121,7 @@
 <p>Open Source: NTFS-3G，Read-Write NTFS Driver</p>
 </blockquote>
 <h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><p>2016 年 07 月 29 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/ntfs-3g/">https://wsgzao.github.io/post/ntfs-3g/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/ntfs-3g/">https://liaojiaxin158.github.io/post/ntfs-3g/</a></p>
 <p><strong> 扩展阅读 </strong></p>
 <p>Tuxera - <a href="https://www.tuxera.com/" target="_blank" rel="noopener">https://www.tuxera.com/</a></p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><blockquote>
@@ -131,7 +131,7 @@
 <p>The release notes and the software changes can be found on the <span class="Apple-converted-space"></span> <a href="http://www.tuxera.com/community/release-history/" target="_blank" rel="noopener">Release History</a> <span class="Apple-converted-space"></span> page. Subscribe <span class="Apple-converted-space"></span> <a href="http://lists.sourceforge.net/mailman/listinfo/ntfs-3g-news" target="_blank" rel="noopener">here</a> <span class="Apple-converted-space"></span> for new release notifications.</p>
 <h2 id="Open-Source-NTFS-3G"><a href="#Open-Source-NTFS-3G" class="headerlink" title="Open Source: NTFS-3G"></a>Open Source: NTFS-3G</h2><p>Latest Download - <a href="http://www.tuxera.com/community/open-source-ntfs-3g/" target="_blank" rel="noopener">http://www.tuxera.com/community/open-source-ntfs-3g/</a><br>NTFS-3G Manual -  <a href="http://www.tuxera.com/community/ntfs-3g-manual/" target="_blank" rel="noopener">http://www.tuxera.com/community/ntfs-3g-manual/</a><br>stable version - <a href="https://tuxera.com/opensource/ntfs-3g_ntfsprogs-2016.2.22.tgz" target="_blank" rel="noopener">https://tuxera.com/opensource/ntfs-3g_ntfsprogs-2016.2.22.tgz</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Installation</span></span><br><span class="line">tar zxvf /tmp/ntfs-3g_ntfsprogs-2016.2.22.tgz</span><br><span class="line"><span class="built_in">cd</span> ntfs*</span><br><span class="line"><span class="comment">#yum install gcc</span></span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install <span class="comment"># or 'sudo make install' if you aren't root</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Usage</span></span><br><span class="line">fdisk -l</span><br><span class="line">mkdir -p /mnt/windows</span><br><span class="line">mount -t ntfs-3g /dev/sda1 /mnt/windows</span><br><span class="line"><span class="comment">#You can also make NTFS to be mounted during boot by adding the following line to the end of the /etc/fstab file:</span></span><br><span class="line">vi /etc/fstab</span><br><span class="line">/dev/sda1 /mnt/windows ntfs-3g defaults 0 0</span><br></pre></td></tr></table></figure>
-<h2 id="Tuxera-NTFS-for-Mac"><a href="#Tuxera-NTFS-for-Mac" class="headerlink" title="Tuxera NTFS for Mac"></a>Tuxera NTFS for Mac</h2><p>Mac 新手入门以及常用软件推荐 - <a href="https://wsgzao.github.io/post/mac/">https://wsgzao.github.io/post/mac/</a></p>
+<h2 id="Tuxera-NTFS-for-Mac"><a href="#Tuxera-NTFS-for-Mac" class="headerlink" title="Tuxera NTFS for Mac"></a>Tuxera NTFS for Mac</h2><p>Mac 新手入门以及常用软件推荐 - <a href="https://liaojiaxin158.github.io/post/mac/">https://liaojiaxin158.github.io/post/mac/</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -149,7 +149,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/ntfs-3g/" data-title="Linux 使用 ntfs-3g 挂载 NTFS 最佳实践 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/ntfs-3g/" data-title="Linux 使用 ntfs-3g 挂载 NTFS 最佳实践 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -499,7 +499,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

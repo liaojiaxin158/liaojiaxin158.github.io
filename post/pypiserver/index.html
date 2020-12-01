@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="pypiserver - minimal PyPI server for use with pip/easy_install">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 pypiserver 快速搭建内网离线 pypi 仓库实践">
-<meta property="og:url" content="https://wsgzao.github.io/post/pypiserver/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/pypiserver/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="pypiserver - minimal PyPI server for use with pip/easy_install">
 <meta property="og:locale" content="zh-CN">
@@ -121,14 +121,14 @@
 <p>pypiserver - minimal PyPI server for use with pip/easy_install</p>
 </blockquote>
 <h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><p>2018 年 04 月 12 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/pypiserver/">https://wsgzao.github.io/post/pypiserver/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/pypiserver/">https://liaojiaxin158.github.io/post/pypiserver/</a></p>
 <p><strong> 扩展阅读 </strong></p>
 <p>pypiserver - <a href="https://github.com/pypiserver/pypiserver" target="_blank" rel="noopener">https://github.com/pypiserver/pypiserver</a></p>
 <h2 id="pypiserver-简介"><a href="#pypiserver-简介" class="headerlink" title="pypiserver 简介"></a>pypiserver 简介</h2><p>pypiserver is a minimal PyPI compatible server for pip or easy_install. It is based on bottle and serves packages from regular directories. Wheels, bdists, eggs and accompanying PGP-signatures can be uploaded either with pip, setuptools, twine, pypi-uploader, or simply copied with scp.</p>
 <h2 id="pypiserver-服务端配置"><a href="#pypiserver-服务端配置" class="headerlink" title="pypiserver 服务端配置"></a>pypiserver 服务端配置</h2><blockquote>
 <p>如果你的 Linux 环境缺少 Python 2.7 可以参考我的文章直接离线升级至最新版本</p>
 </blockquote>
-<p>Python 2.6 升级至 Python 2.7 的实践心得<br><a href="https://wsgzao.github.io/post/python-2-6-update-to-2-7/">https://wsgzao.github.io/post/python-2-6-update-to-2-7/</a></p>
+<p>Python 2.6 升级至 Python 2.7 的实践心得<br><a href="https://liaojiaxin158.github.io/post/python-2-6-update-to-2-7/">https://liaojiaxin158.github.io/post/python-2-6-update-to-2-7/</a></p>
 <p>pypiserver &gt; 1.2.x works with python 2.7 and 3.3+ or pypy. Older python-versions may still work, but they are not tested. For legacy python versions, use pypiserver-1.1.x series.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 替换 pip 为阿里云，感概豆瓣的时代已经过去 </span></span><br><span class="line">tee ~/.pip/pip.conf &lt;&lt;-<span class="string">'EOF'</span></span><br><span class="line">[global]</span><br><span class="line">index-url = https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host= mirrors.aliyun.com</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接在线安装 pypiserver</span></span><br><span class="line">pip install pypiserver</span><br><span class="line"><span class="comment"># 离线下载 pypiserver</span></span><br><span class="line">mkdir /tmp/pypiserver</span><br><span class="line">pip install -d /tmp/pypiserver/ pypiserver</span><br><span class="line"></span><br><span class="line"><span class="comment"># Copy packages into this directory.</span></span><br><span class="line">mkdir ~/packages</span><br><span class="line"><span class="comment"># Copy some packages into your ~/packages folder and then get your pypiserver up and running:</span></span><br><span class="line">pypi-server -p 8080 ~/packages &amp;</span><br></pre></td></tr></table></figure>
 <h2 id="pypiserver-客户端配置"><a href="#pypiserver-客户端配置" class="headerlink" title="pypiserver 客户端配置"></a>pypiserver 客户端配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Download and Install hosted packages.</span></span><br><span class="line">pip install  --extra-index-url http://localhost:8080/simple/ ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">pip install --extra-index-url http://localhost:8080</span><br><span class="line"></span><br><span class="line"><span class="comment">## Search hosted packages</span></span><br><span class="line">pip search --index http://localhost:8080 ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 个人推荐的配置 </span></span><br><span class="line">tee ~/.pip/pip.conf &lt;&lt;-<span class="string">'EOF'</span></span><br><span class="line">[global]</span><br><span class="line">index-url = http://172.28.70.126/simple</span><br><span class="line">extra-index-url = https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host = 172.28.70.126</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
@@ -155,7 +155,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/pypiserver/" data-title="使用 pypiserver 快速搭建内网离线 pypi 仓库实践 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/pypiserver/" data-title="使用 pypiserver 快速搭建内网离线 pypi 仓库实践 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -505,7 +505,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

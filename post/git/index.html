@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="Git是目前世界上最先进的分布式版本控制系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 常用命令和 Git 团队使用规范指南">
-<meta property="og:url" content="https://wsgzao.github.io/post/git/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/git/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="Git是目前世界上最先进的分布式版本控制系统">
 <meta property="og:locale" content="zh-CN">
@@ -125,7 +125,7 @@
 <p>Git 是目前世界上最先进的分布式版本控制系统</p>
 </blockquote>
 <h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><p>2020 年 02 月 06 日 - 更新 Git 命令学习<br>2016 年 04 月 22 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/git/">https://wsgzao.github.io/post/git/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/git/">https://liaojiaxin158.github.io/post/git/</a></p>
 <p><strong> 扩展阅读 </strong></p>
 <p>Git Book - <a href="https://git-scm.com/book/zh/" target="_blank" rel="noopener">https://git-scm.com/book/zh/</a><br>git 简明指南 - <a href="http://rogerdudler.github.io/git-guide/index.zh.html" target="_blank" rel="noopener">http://rogerdudler.github.io/git-guide/index.zh.html</a><br>常用 Git 命令清单 - <a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a><br>猴子都能懂的 GIT 入门 - <a href="http://backlogtool.com/git-guide/cn/" target="_blank" rel="noopener">http://backlogtool.com/git-guide/cn/</a><br>Git 教程 - <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a></p>
 <h2 id="SVN-与-Git-的最主要的区别"><a href="#SVN-与-Git-的最主要的区别" class="headerlink" title="SVN 与 Git 的最主要的区别"></a>SVN 与 Git 的最主要的区别</h2><p>SVN 是集中式版本控制系统，版本库是集中放在中央服务器的，而干活的时候，用的都是自己的电脑，所以首先要从中央服务器哪里得到最新的版本，然后干活，干完后，需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，如果在局域网还可以，带宽够大，速度够快，如果在互联网下，如果网速慢的话，就纳闷了。</p>
@@ -136,7 +136,7 @@
 <h3 id="Git-服务端"><a href="#Git-服务端" class="headerlink" title="Git 服务端"></a>Git 服务端</h3><blockquote>
 <p>服务端搭建 Git 很简单，有更多需求不妨试试 Gogs 和 Gitlab</p>
 </blockquote>
-<p>使用 Gogs 轻松搭建可能比 GitLab 更好用的 Git 服务平台 - <a href="https://wsgzao.github.io/post/gogs/">https://wsgzao.github.io/post/gogs/</a></p>
+<p>使用 Gogs 轻松搭建可能比 GitLab 更好用的 Git 服务平台 - <a href="https://liaojiaxin158.github.io/post/gogs/">https://liaojiaxin158.github.io/post/gogs/</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 git</span></span><br><span class="line">sudo apt-get install git</span><br><span class="line">yum install git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 git 用户，用来运行 git 服务</span></span><br><span class="line">sudo adduser git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建证书使用公钥免密码登录(可选)</span></span><br><span class="line">ssh-keygen -t rsa</span><br><span class="line">vi ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化 Git 仓库</span></span><br><span class="line">sudo git init --bare sample.git</span><br><span class="line">sudo chown -R git:git sample.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁用 shell 登录</span></span><br><span class="line">vi /etc/passwd</span><br><span class="line">git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在客户端上克隆远程仓库</span></span><br><span class="line">git <span class="built_in">clone</span> git@server:/srv/sample.git</span><br></pre></td></tr></table></figure>
 <p>管理公钥推荐使用 Gitosis<br>Gitosis - <a href="https://github.com/res0nat0r/gitosis" target="_blank" rel="noopener">https://github.com/res0nat0r/gitosis</a><br>Gitosis 配置手记 - <a href="http://debugo.com/gitosis/" target="_blank" rel="noopener">http://debugo.com/gitosis/</a></p>
 <p>管理权限推荐使用 Gitolite<br>Gitolite - <a href="https://github.com/sitaramc/gitolite" target="_blank" rel="noopener">https://github.com/sitaramc/gitolite</a></p>
@@ -529,7 +529,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/git/" data-title="Git 常用命令和 Git 团队使用规范指南 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/git/" data-title="Git 常用命令和 Git 团队使用规范指南 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -879,7 +879,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

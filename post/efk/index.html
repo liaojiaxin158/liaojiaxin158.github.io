@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="开源日志管理方案ELK和EFK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开源日志管理方案 ELK 和 EFK 的区别">
-<meta property="og:url" content="https://wsgzao.github.io/post/efk/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/efk/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="开源日志管理方案ELK和EFK">
 <meta property="og:locale" content="zh-CN">
@@ -136,7 +136,7 @@
 		 -->
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>主流的 ELK (Elasticsearch, <code>Logstash</code>, Kibana) 目前已经转变为 EFK (Elasticsearch, <code>Filebeat</code> or <code>Fluentd</code>, Kibana) 比较重，对于容器云的日志方案业内也普遍推荐采用 Fluentd，我们一起来看下从 ELK 到 EFK 发生了哪些变化，与此同时我也推荐大家了解下 Grafana Loki</p>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2020 年 11 月 03 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/efk/">https://wsgzao.github.io/post/efk/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/efk/">https://liaojiaxin158.github.io/post/efk/</a></p>
 <hr>
 <h2 id="ELK-和-EFK-概述"><a href="#ELK-和-EFK-概述" class="headerlink" title="ELK 和 EFK 概述"></a>ELK 和 EFK 概述</h2><p>随着现在各种软件系统的复杂度越来越高，特别是部署到云上之后，再想登录各个节点上查看各个模块的 log，基本是不可行了。因为不仅效率低下，而且有时由于安全性，不可能让工程师直接访问各个物理节点。而且现在大规模的软件系统基本都采用集群的部署方式，意味着对每个 service，会启动多个完全一样的 POD 对外提供服务，每个 container 都会产生自己的 log，仅从产生的 log 来看，你根本不知道是哪个 POD 产生的，这样对查看分布式的日志更加困难。</p>
 <p>所以在云时代，需要一个收集并分析 log 的解决方案。首先需要将分布在各个角落的 log 收集到一个集中的地方，方便查看。收集了之后，还可以进行各种统计分析，甚至用流行的大数据或 maching learning 的方法进行分析。当然，对于传统的软件部署方式，也需要这样的 log 的解决方案，不过本文主要从云的角度来介绍。</p>
@@ -284,7 +284,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/efk/" data-title="开源日志管理方案 ELK 和 EFK 的区别 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/efk/" data-title="开源日志管理方案 ELK 和 EFK 的区别 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -634,7 +634,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

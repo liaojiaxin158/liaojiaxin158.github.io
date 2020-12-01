@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="Docker容器时间如何与宿主机同步问题解决方案小结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 容器时间如何与宿主机同步问题解决方案小结">
-<meta property="og:url" content="https://wsgzao.github.io/post/docker-localtime/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/docker-localtime/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="Docker容器时间如何与宿主机同步问题解决方案小结">
 <meta property="og:locale" content="zh-CN">
@@ -118,7 +118,7 @@
 		 -->
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果在启动 Docker 容器的过程中没有单独配置 localtime，很可能造成 Docker 容器时间与主机时间不一致的情况，比如 UTC 和 CST 相差 8 小时，换句话来说就是容器时间与北京时间相差 8 个小时。</p>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2020 年 08 月 13 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/docker-localtime/">https://wsgzao.github.io/post/docker-localtime/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/docker-localtime/">https://liaojiaxin158.github.io/post/docker-localtime/</a></p>
 <hr>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>问题：容器时间与北京时间相差 8 个小时</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看主机时间 </span></span><br><span class="line">[root@localhost ~]<span class="comment"># date</span></span><br><span class="line">2020 年 07 月 27 日 星期三 22:42:44 CST</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器时间 </span></span><br><span class="line"><span class="comment"># docker exec -it &lt;containerid&gt; /bin/sh</span></span><br><span class="line">root@b43340ecf5ef:/<span class="comment"># date</span></span><br><span class="line">Wed Jul 27 14:43:31 UTC 2020</span><br></pre></td></tr></table></figure>
@@ -150,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/docker-localtime/" data-title="Docker 容器时间如何与宿主机同步问题解决方案小结 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/docker-localtime/" data-title="Docker 容器时间如何与宿主机同步问题解决方案小结 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -500,7 +500,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

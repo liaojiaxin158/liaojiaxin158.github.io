@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="Pipenv 官方推荐的 Python 包管理工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 pipenv 代替 virtualenv 管理 python 包">
-<meta property="og:url" content="https://wsgzao.github.io/post/pipenv/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/pipenv/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="Pipenv 官方推荐的 Python 包管理工具">
 <meta property="og:locale" content="zh-CN">
@@ -124,7 +124,7 @@
 <p>Pipenv 官方推荐的 Python 包管理工具</p>
 </blockquote>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2017 年 04 月 25 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/pipenv/">https://wsgzao.github.io/post/pipenv/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/pipenv/">https://liaojiaxin158.github.io/post/pipenv/</a></p>
 <p><strong> 扩展阅读 </strong></p>
 <p>Pipenv - <a href="https://docs.pipenv.org/" target="_blank" rel="noopener">https://docs.pipenv.org/</a><br>Pipenv &amp; 虚拟环境 - <a href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html" target="_blank" rel="noopener">http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html</a></p>
 <hr>
@@ -145,7 +145,7 @@
 <p>我的使用深度不高，就以目前我实际使用 pipenv 的方式为例</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pip 离线下载 </span></span><br><span class="line"><span class="comment"># pip install --download DIR -r requirements.txt</span></span><br><span class="line">mkdir pipenv</span><br><span class="line">pip install -d ~/pipenv/ pipenv</span><br><span class="line"></span><br><span class="line"><span class="comment"># pip 离线安装 pipenv</span></span><br><span class="line">pip install --no-index --find-links=pipenv/ pipenv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 pipenv 创建虚拟环境 </span></span><br><span class="line">mkdir win_ansible</span><br><span class="line"><span class="built_in">cd</span> win_ansible</span><br><span class="line">pipenv shell</span><br><span class="line">pip install --no-index --find-links=pip-ansible-2.4.3.0/ -r requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级 ansible 版本 </span></span><br><span class="line">pip install --no-index --find-links=pip-ansible-2.5.0/ -r requirements.txt -U</span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出虚拟环境 </span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对不同开发用户自动创建 python 虚拟环境 </span></span><br><span class="line">vim ~/.bash_profile</span><br><span class="line">pipenv shell</span><br><span class="line"></span><br><span class="line"><span class="comment"># 虚拟环境会在当前用户家目录自动创建 </span></span><br><span class="line">test101@JQ/root<span class="comment">#su - wangao</span></span><br><span class="line">Spawning environment shell (/bin/bash). Use <span class="string">'exit'</span> to leave.</span><br><span class="line">test101@JQ/home/wangao$. /home/wangao/.<span class="built_in">local</span>/share/virtualenvs/wangao-iOSX51hl/bin/activate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 沿用 pip 创建 requirements.txt，该方法相对 Pipfile 来说不是最佳 </span></span><br><span class="line">(wangao-iOSX51hl) test101@JQ/home/wangao/git/ansible<span class="variable">$cat</span> requirements.txt </span><br><span class="line">--index-url=http://172.31.96.201:8081/simple/</span><br><span class="line">--trusted-host=172.31.96.201</span><br><span class="line">ansible</span><br><span class="line">ansible-cmdb</span><br><span class="line">pywinrm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过 gitlab 同步控制 python 包环境 </span></span><br><span class="line">git checkout develop</span><br><span class="line">git pull origin develop</span><br><span class="line">pip install -r requirements.txt -U</span><br></pre></td></tr></table></figure>
-<h2 id="推荐参考的文章"><a href="#推荐参考的文章" class="headerlink" title="推荐参考的文章"></a>推荐参考的文章</h2><p>Python 2.6 升级至 Python 2.7 的实践心得 - <a href="https://wsgzao.github.io/post/python-2-6-update-to-2-7/">https://wsgzao.github.io/post/python-2-6-update-to-2-7/</a><br>使用 pypiserver 快速搭建内网离线 pypi 仓库实践 - <a href="https://wsgzao.github.io/post/pypiserver/">https://wsgzao.github.io/post/pypiserver/</a><br>RHEL7/CentOS7 在线和离线安装 GitLab 配置使用实践 - <a href="https://wsgzao.github.io/post/gitlab/">https://wsgzao.github.io/post/gitlab/</a></p>
+<h2 id="推荐参考的文章"><a href="#推荐参考的文章" class="headerlink" title="推荐参考的文章"></a>推荐参考的文章</h2><p>Python 2.6 升级至 Python 2.7 的实践心得 - <a href="https://liaojiaxin158.github.io/post/python-2-6-update-to-2-7/">https://liaojiaxin158.github.io/post/python-2-6-update-to-2-7/</a><br>使用 pypiserver 快速搭建内网离线 pypi 仓库实践 - <a href="https://liaojiaxin158.github.io/post/pypiserver/">https://liaojiaxin158.github.io/post/pypiserver/</a><br>RHEL7/CentOS7 在线和离线安装 GitLab 配置使用实践 - <a href="https://liaojiaxin158.github.io/post/gitlab/">https://liaojiaxin158.github.io/post/gitlab/</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -163,7 +163,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/pipenv/" data-title="使用 pipenv 代替 virtualenv 管理 python 包 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/pipenv/" data-title="使用 pipenv 代替 virtualenv 管理 python 包 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -513,7 +513,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

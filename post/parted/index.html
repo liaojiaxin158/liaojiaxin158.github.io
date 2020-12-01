@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="使用parted解决大于2T的磁盘分区">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 parted 解决大于 2T 的磁盘分区">
-<meta property="og:url" content="https://wsgzao.github.io/post/parted/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/parted/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="使用parted解决大于2T的磁盘分区">
 <meta property="og:locale" content="zh-CN">
@@ -121,7 +121,7 @@
 <p>使用 parted 解决大于 2T 的磁盘分区</p>
 </blockquote>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2019 年 01 月 24 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/parted/">https://wsgzao.github.io/post/parted/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/parted/">https://liaojiaxin158.github.io/post/parted/</a></p>
 <p><strong> 扩展阅读 </strong></p>
 <p>Parted - <a href="https://www.gnu.org/software/parted/manual/" target="_blank" rel="noopener">https://www.gnu.org/software/parted/manual/</a></p>
 <hr>
@@ -142,7 +142,7 @@
 <li>更为健壮。MBR 中分区信息和启动信息保存在一起而且只有一份，GPT 在整个磁盘上保存多份这个信息，并为它们提供 CRC 检验，当有数据损坏时，它能够进行恢复。</li>
 </ul>
 <h2 id="小于-2T-的分区的管理"><a href="#小于-2T-的分区的管理" class="headerlink" title="小于 2T 的分区的管理"></a>小于 2T 的分区的管理</h2><p>因为传统的 MBR 分区，支持的最大分区为 2T，也可以一定程度上等同于磁盘大小，必定 2T 以上的硬盘不是非常普及。在 CentOS 中可以使用 fdisk 指令进行管理。详细过程不在赘述。</p>
-<p>LVM 逻辑卷管理配置小结 - <a href="https://wsgzao.github.io/post/lvm/">https://wsgzao.github.io/post/lvm/</a></p>
+<p>LVM 逻辑卷管理配置小结 - <a href="https://liaojiaxin158.github.io/post/lvm/">https://liaojiaxin158.github.io/post/lvm/</a></p>
 <h2 id="超过-2T-的分区的管理"><a href="#超过-2T-的分区的管理" class="headerlink" title="超过 2T 的分区的管理"></a>超过 2T 的分区的管理</h2><p>当 CentOS 中识别到有磁盘容量超过 2T 时，如果试图使用 fdisk 指令对其分区会有相应的警告提示，大致如下：</p>
 <pre><code>WARNING: GPT (GUID Partition Table) detected on &apos;/dev/sdb&apos;! The util fdisk doesn&apos;t support GPT. Use GNU Parted.
 </code></pre><p>明确提示需要使用 parted 进行管理，如果系统中没有这一指令，使用 <code>yum install -y parted</code> 进行安装即可。</p>
@@ -170,7 +170,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/parted/" data-title="使用 parted 解决大于 2T 的磁盘分区 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/parted/" data-title="使用 parted 解决大于 2T 的磁盘分区 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -520,7 +520,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

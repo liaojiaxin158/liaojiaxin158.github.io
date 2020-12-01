@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="Puppet是最佳的集中配置管理系统之一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Puppet 安装配置小结">
-<meta property="og:url" content="https://wsgzao.github.io/post/puppet/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/puppet/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="Puppet是最佳的集中配置管理系统之一">
 <meta property="og:locale" content="zh-CN">
@@ -125,7 +125,7 @@
 <p>Puppet 是最佳的集中配置管理系统之一</p>
 </blockquote>
 <h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><p>2016 年 03 月 25 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/puppet/">https://wsgzao.github.io/post/puppet/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/puppet/">https://liaojiaxin158.github.io/post/puppet/</a></p>
 <p><strong> 扩展阅读 </strong></p>
 <p>Puppet Labs Documentation - <a href="https://docs.puppetlabs.com/" target="_blank" rel="noopener">https://docs.puppetlabs.com/</a><br>Puppet Forge - <a href="https://forge.puppetlabs.com/" target="_blank" rel="noopener">https://forge.puppetlabs.com/</a></p>
 <h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><blockquote>
@@ -146,7 +146,7 @@
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote>
 <p>以 rhel6.3 为例，前期核心在于配置 yum，更多技巧可以参考以下文章</p>
 </blockquote>
-<p>RHEL(Red Hat Enterprise Linux) 配置 yum 源 - <a href="https://wsgzao.github.io/post/yum/">https://wsgzao.github.io/post/yum/</a></p>
+<p>RHEL(Red Hat Enterprise Linux) 配置 yum 源 - <a href="https://liaojiaxin158.github.io/post/yum/">https://liaojiaxin158.github.io/post/yum/</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 关闭 iptables</span></span><br><span class="line">/etc/init.d/iptables stop</span><br><span class="line">chkconfig iptables off</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭 selinux</span></span><br><span class="line">setenforce 0</span><br><span class="line">sed -i <span class="string">'s/SELINUX=enforcing/SELINUX=disabled/'</span> /etc/selinux/config  </span><br><span class="line"></span><br><span class="line"><span class="comment">#NTP 同步 </span></span><br><span class="line">ntpdate 0.rhel.pool.ntp.org</span><br><span class="line">crontab -e</span><br><span class="line">0 0 * * * /usr/sbin/ntpdate 0.rhel.pool.ntp.org;/usr/sbin/hwclock -w</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加 hosts</span></span><br><span class="line">vi /etc/hosts</span><br><span class="line">192.168.1.10 master</span><br><span class="line">192.168.1.11 client</span><br><span class="line"></span><br><span class="line"><span class="comment">#puppet</span></span><br><span class="line">http://downloads.puppetlabs.com/puppet/</span><br><span class="line"><span class="comment">#facter</span></span><br><span class="line">http://downloads.puppetlabs.com/facter/</span><br><span class="line"><span class="comment">#ruby</span></span><br><span class="line">https://www.ruby-lang.org/zh_cn/downloads/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 CentOS YUM 源 </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d/</span><br><span class="line">cp rhel-source.repo rhel-source.repo.bak</span><br><span class="line">vi rhel-source.repo</span><br><span class="line"></span><br><span class="line">[base]</span><br><span class="line">name=CentOS-<span class="variable">$releasever</span>-Base</span><br><span class="line">baseurl=http://centos.ustc.edu.cn/centos/6/os/x86_64/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-6</span><br><span class="line"></span><br><span class="line">[updates]</span><br><span class="line">name=CentOS-<span class="variable">$releasever</span>-Updates</span><br><span class="line">baseurl=http://centos.ustc.edu.cn/centos/6/os/x86_64/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-6</span><br><span class="line"></span><br><span class="line">[extras]</span><br><span class="line">name=CentOS-<span class="variable">$releasever</span>-Extras</span><br><span class="line">baseurl=http://centos.ustc.edu.cn/centos/6/os/x86_64/</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://mirrors.163.com/centos/RPM-GPG-KEY-CentOS-6</span><br><span class="line"></span><br><span class="line">[centosplus]</span><br><span class="line">name=CentOS-<span class="variable">$releasever</span>-Plus</span><br><span class="line">baseurl=http://centos.ustc.edu.cn/centos/6/os/x86_64/</span><br><span class="line">gpgcheck=1</span><br><span class="line"></span><br><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
 <h2 id="Puppet-Server"><a href="#Puppet-Server" class="headerlink" title="Puppet Server"></a>Puppet Server</h2><blockquote>
 <p>如果可以访问外网并配置 repos，直接 yum install puppetserver 简单粗暴</p>
@@ -182,7 +182,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/puppet/" data-title="Puppet 安装配置小结 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/puppet/" data-title="Puppet 安装配置小结 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -532,7 +532,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

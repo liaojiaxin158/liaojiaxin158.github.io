@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="轻轻松松解决pip离线安装，配置pypi国内加速镜像">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pip 离线安装和配置 pypi 国内加速镜像实践">
-<meta property="og:url" content="https://wsgzao.github.io/post/pip/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/pip/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="轻轻松松解决pip离线安装，配置pypi国内加速镜像">
 <meta property="og:locale" content="zh-CN">
@@ -121,7 +121,7 @@
 <p>轻轻松松解决 pip 离线安装，配置 pypi 国内加速镜像</p>
 </blockquote>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2018 年 05 月 03 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/pip/">https://wsgzao.github.io/post/pip/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/pip/">https://liaojiaxin158.github.io/post/pip/</a></p>
 <p><strong> 扩展阅读 </strong></p>
 <p>PyPA - <a href="https://www.pypa.io/" target="_blank" rel="noopener">https://www.pypa.io/</a></p>
 <hr>
@@ -157,7 +157,7 @@
 <p>Windows 更换 pypi 国内源</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows 更换 pypi 国内源，运行以下 python 代码会自动建立 pip.ini</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">ini=<span class="string">"""[global]</span></span><br><span class="line"><span class="string">index-url = https://pypi.doubanio.com/simple/</span></span><br><span class="line"><span class="string">[install]</span></span><br><span class="line"><span class="string">trusted-host=pypi.doubanio.com</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">pippath=os.environ[<span class="string">"USERPROFILE"</span>]+<span class="string">"\\pip\\"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(pippath):</span><br><span class="line">    os.mkdir(pippath)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(pippath+<span class="string">"pip.ini"</span>,<span class="string">"w+"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(ini)</span><br></pre></td></tr></table></figure>
-<h2 id="推荐参考的文章"><a href="#推荐参考的文章" class="headerlink" title="推荐参考的文章"></a>推荐参考的文章</h2><p>Python 2.6 升级至 Python 2.7 的实践心得 - <a href="https://wsgzao.github.io/post/python-2-6-update-to-2-7/">https://wsgzao.github.io/post/python-2-6-update-to-2-7/</a><br>pip 离线安装和配置 pypi 国内加速镜像实践 - <a href="https://wsgzao.github.io/post/pip/">https://wsgzao.github.io/post/pip/</a><br>使用 pypiserver 快速搭建内网离线 pypi 仓库实践 - <a href="https://wsgzao.github.io/post/pypiserver/">https://wsgzao.github.io/post/pypiserver/</a><br>RHEL7/CentOS7 在线和离线安装 GitLab 配置使用实践 - <a href="https://wsgzao.github.io/post/gitlab/">https://wsgzao.github.io/post/gitlab/</a><br>使用 pipenv 代替 virtualenv 管理 python 包 - <a href="https://wsgzao.github.io/post/pipenv/">https://wsgzao.github.io/post/pipenv/</a></p>
+<h2 id="推荐参考的文章"><a href="#推荐参考的文章" class="headerlink" title="推荐参考的文章"></a>推荐参考的文章</h2><p>Python 2.6 升级至 Python 2.7 的实践心得 - <a href="https://liaojiaxin158.github.io/post/python-2-6-update-to-2-7/">https://liaojiaxin158.github.io/post/python-2-6-update-to-2-7/</a><br>pip 离线安装和配置 pypi 国内加速镜像实践 - <a href="https://liaojiaxin158.github.io/post/pip/">https://liaojiaxin158.github.io/post/pip/</a><br>使用 pypiserver 快速搭建内网离线 pypi 仓库实践 - <a href="https://liaojiaxin158.github.io/post/pypiserver/">https://liaojiaxin158.github.io/post/pypiserver/</a><br>RHEL7/CentOS7 在线和离线安装 GitLab 配置使用实践 - <a href="https://liaojiaxin158.github.io/post/gitlab/">https://liaojiaxin158.github.io/post/gitlab/</a><br>使用 pipenv 代替 virtualenv 管理 python 包 - <a href="https://liaojiaxin158.github.io/post/pipenv/">https://liaojiaxin158.github.io/post/pipenv/</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -175,7 +175,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/pip/" data-title="pip 离线安装和配置 pypi 国内加速镜像实践 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/pip/" data-title="pip 离线安装和配置 pypi 国内加速镜像实践 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -525,7 +525,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

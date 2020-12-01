@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="Grafana Loki开源日志聚合系统代替ELK或EFK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Grafana Loki 开源日志聚合系统代替 ELK 或 EFK">
-<meta property="og:url" content="https://wsgzao.github.io/post/loki/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/loki/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="Grafana Loki开源日志聚合系统代替ELK或EFK">
 <meta property="og:locale" content="zh-CN">
@@ -140,7 +140,7 @@
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在对公司容器云的日志方案进行设计的时候，发现主流的 ELK (Elasticsearch, <code>Logstash</code>, Kibana) 或者 EFK (Elasticsearch, <code>Filebeat</code> or <code>Fluentd</code>, Kibana) 比较重，再加上现阶段对于 ES 复杂的搜索功能很多都用不上，最终选择了 Grafana 开源的 Loki 日志系统。下面我们来介绍下 Loki 的一些基本概念和架构，当然 EFK 作为业界成熟的日志聚合解决方案也是大家应该需要熟悉和掌握的。</p>
 <p><a href="https://grafana.com/blog/2020/10/28/loki-2.0-released-transform-logs-as-youre-querying-them-and-set-up-alerts-within-loki/" target="_blank" rel="noopener">Loki 2.0 released: Transform logs as you’re querying them, and set up alerts within Loki</a>, Loki 2.0 大版本更新后更好用了</p>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2020 年 11 月 02 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/loki/">https://wsgzao.github.io/post/loki/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/loki/">https://liaojiaxin158.github.io/post/loki/</a></p>
 <hr>
 <h2 id="Loki-简介"><a href="#Loki-简介" class="headerlink" title="Loki 简介"></a>Loki 简介</h2><p>Grafana Loki is a set of components that can be composed into a fully featured logging stack.</p>
 <p>Unlike other logging systems, Loki is built around the idea of only indexing metadata about your logs: labels (just like Prometheus labels). Log data itself is then compressed and stored in chunks in object stores such as S3 or GCS, or even locally on the filesystem. A small index and highly compressed chunks simplifies the operation and significantly lowers the cost of Loki.</p>
@@ -460,7 +460,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/loki/" data-title="Grafana Loki 开源日志聚合系统代替 ELK 或 EFK | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/loki/" data-title="Grafana Loki 开源日志聚合系统代替 ELK 或 EFK | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -810,7 +810,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

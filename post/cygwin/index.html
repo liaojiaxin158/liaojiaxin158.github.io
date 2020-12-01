@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="Get that Linux feeling - on Windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 Cygwin 在 Windows 上体验 Linux 的快感">
-<meta property="og:url" content="https://wsgzao.github.io/post/cygwin/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/cygwin/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="Get that Linux feeling - on Windows">
 <meta property="og:locale" content="zh-CN">
@@ -125,7 +125,7 @@
 </blockquote>
 <hr>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2015 年 07 月 24 日 - 增加在 Cygwin 里安装使用 dig 实践<br>2015 年 07 月 21 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/cygwin/">https://wsgzao.github.io/post/cygwin/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/cygwin/">https://liaojiaxin158.github.io/post/cygwin/</a></p>
 <p>扩展阅读</p>
 <p>Cygwin - <a href="http://www.cygwin.com/" target="_blank" rel="noopener">http://www.cygwin.com/</a><br>163 源 - <a href="http://mirrors.163.com/cygwin/" target="_blank" rel="noopener">http://mirrors.163.com/cygwin/</a></p>
 <hr>
@@ -160,7 +160,7 @@
 <p>推荐国内源 - <a href="http://mirrors.163.com/cygwin/" target="_blank" rel="noopener">http://mirrors.163.com/cygwin/</a></p>
 </blockquote>
 <p>2.Install the <code>Bind</code> package</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ dig wsgzao.github.io</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.10.2-P2 &lt;&lt;&gt;&gt; wsgzao.github.io</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 21080</span><br><span class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1</span><br><span class="line"></span><br><span class="line">;; OPT PSEUDOSECTION:</span><br><span class="line">; EDNS: version: 0, flags:; udp: 4096</span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;wsgzao.github.io.              IN      A</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">wsgzao.github.io.       30      IN      CNAME   github.map.fastly.net.</span><br><span class="line">github.map.fastly.net.  30      IN      A       103.245.222.133</span><br><span class="line"></span><br><span class="line">;; Query time: 10 msec</span><br><span class="line">;; SERVER: 202.96.209.133<span class="comment">#53(202.96.209.133)</span></span><br><span class="line">;; WHEN: 周五 七月 24 15:28:05 CST 2015</span><br><span class="line">;; MSG SIZE  rcvd: 96</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ dig liaojiaxin158.github.io</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.10.2-P2 &lt;&lt;&gt;&gt; liaojiaxin158.github.io</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 21080</span><br><span class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1</span><br><span class="line"></span><br><span class="line">;; OPT PSEUDOSECTION:</span><br><span class="line">; EDNS: version: 0, flags:; udp: 4096</span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;liaojiaxin158.github.io.              IN      A</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">liaojiaxin158.github.io.       30      IN      CNAME   github.map.fastly.net.</span><br><span class="line">github.map.fastly.net.  30      IN      A       103.245.222.133</span><br><span class="line"></span><br><span class="line">;; Query time: 10 msec</span><br><span class="line">;; SERVER: 202.96.209.133<span class="comment">#53(202.96.209.133)</span></span><br><span class="line">;; WHEN: 周五 七月 24 15:28:05 CST 2015</span><br><span class="line">;; MSG SIZE  rcvd: 96</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -178,7 +178,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/cygwin/" data-title="使用 Cygwin 在 Windows 上体验 Linux 的快感 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/cygwin/" data-title="使用 Cygwin 在 Windows 上体验 Linux 的快感 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -528,7 +528,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 

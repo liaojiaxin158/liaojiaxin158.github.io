@@ -1,4 +1,4 @@
-//HelloDog -  http://wsgzao.github.io/post/duoshuo/
+//HelloDog -  http://liaojiaxin158.github.io/post/duoshuo/
 //Mobile Start
 function checkMobile() {
     var isiPad = navigator.userAgent.match(/iPad/i) != null;

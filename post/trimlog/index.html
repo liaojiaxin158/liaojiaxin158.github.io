@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript">
-    var host = "wsgzao.github.io";
+    var host = "liaojiaxin158.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
         window.location.protocol = "https";
   </script> 
@@ -28,7 +28,7 @@
     <meta name="description" content="基于bash shell脚本制定灵活的trimlog日志清理策略">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于 bash shell 脚本制定灵活的 trimlog 日志清理策略">
-<meta property="og:url" content="https://wsgzao.github.io/post/trimlog/index.html">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/trimlog/index.html">
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="基于bash shell脚本制定灵活的trimlog日志清理策略">
 <meta property="og:locale" content="zh-CN">
@@ -121,9 +121,9 @@
 <p>基于 bash shell 脚本制定灵活的 trimlog 日志清理策略</p>
 </blockquote>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2019 年 10 月 08 日 - 初稿</p>
-<p>阅读原文 - <a href="https://wsgzao.github.io/post/trimlog/">https://wsgzao.github.io/post/trimlog/</a></p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/trimlog/">https://liaojiaxin158.github.io/post/trimlog/</a></p>
 <p><strong> 扩展阅读 </strong></p>
-<p><a href="https://wsgzao.github.io/post/find/">基于 bash find 命令执行 log 日志备份和清理的一次简单实践</a></p>
+<p><a href="https://liaojiaxin158.github.io/post/find/">基于 bash find 命令执行 log 日志备份和清理的一次简单实践</a></p>
 <hr>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查 crontab</span></span><br><span class="line">cat /etc/crontab</span><br><span class="line"></span><br><span class="line"><span class="comment">#Ansible: gdp_trim_log</span></span><br><span class="line">0 1 * * * root /data/release/trimlog.sh <span class="string">'/data/release/log/gop_gdp'</span> 30 1 <span class="string">'*'</span> <span class="string">'%Y%m%d'</span> &gt;&gt; /data/release/trimlog.txt</span><br><span class="line">0 1 * * * root /data/release/trimlog.sh <span class="string">'/data/release/log/cacheupdate'</span> 30 1 <span class="string">'*'</span> <span class="string">'%Y%m%d'</span> &gt;&gt; /data/release/trimlog.txt</span><br><span class="line"><span class="comment">#Ansible: gdp_trim_backup</span></span><br><span class="line">0 1 * * * root /data/release/trimbackup.sh <span class="string">'/data/release/backup/gop_gdp'</span> 30 &gt;&gt; /data/release/trimbackup.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 crontab 日志 </span></span><br><span class="line">less /var/<span class="built_in">log</span>/cron</span><br><span class="line"></span><br><span class="line">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183782]: (root) CMD (/data/release/trimlog.sh <span class="string">'/data/release/log/gop_gdp'</span> 30 1 <span class="string">'*'</span> <span class="string">')</span></span><br><span class="line"><span class="string">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183783]: (root) CMD (/data/release/trimbackup.sh'</span>/data/release/backup/gop_gdp<span class="string">'30 &gt;&gt; /data/release/trimbackup.txt)</span></span><br><span class="line"><span class="string">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183784]: (root) CMD (/data/release/trimlog.sh'</span>/data/release/<span class="built_in">log</span>/cacheupdate<span class="string">'30 1'</span>*<span class="string">''</span>)</span><br><span class="line">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183786]: (root) CMD (/usr/lib64/sa/sa1 1 1)</span><br><span class="line">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183788]: (root) CMD (<span class="built_in">cd</span> /tmp &amp;&amp;  ss -tna | awk <span class="string">'&#123;print $1&#125;'</span> | sort | uniq -c &gt; snmpss.tmp &amp;&amp; chcon system_u:object_r</span><br><span class="line">:snmpd_var_run_t:s0 snmpss.tmp &amp;&amp; mv -f snmpss.tmp snmpss.cache)</span><br><span class="line">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183779]: (root) CMDOUT (/bin/bash: -c: line 0: unexpected EOF <span class="keyword">while</span> looking <span class="keyword">for</span> matching `<span class="string">''</span>)</span><br><span class="line">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183779]: (root) CMDOUT (/bin/bash: -c: line 1: syntax error: unexpected end of file)</span><br><span class="line">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183778]: (root) CMDOUT (/bin/bash: -c: line 0: unexpected EOF <span class="keyword">while</span> looking <span class="keyword">for</span> matching `<span class="string">''</span>)</span><br><span class="line">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183778]: (root) CMDOUT (/bin/bash: -c: line 1: syntax error: unexpected end of file)</span><br><span class="line">Oct  8 01:00:01 sg-gop-10-71-12-146 CROND[183777]: (root) CMDOUT (find: ‘/data/release/backup/gop_gdp’: No such file or directory)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 crontab 的 date 中加入转移字符即可 </span></span><br><span class="line">0 1 * * * root /data/release/trimlog.sh <span class="string">'/data/release/log/gop_gdp'</span> 30 1 <span class="string">'*'</span> <span class="string">'\%Y\%m\%d'</span> &gt;&gt; /data/release/trimlog.txt</span><br><span class="line">0 1 * * * root /data/release/trimlog.sh <span class="string">'/data/release/log/cacheupdate'</span> 30 1 <span class="string">'*'</span> <span class="string">'\%Y\%m\%d'</span> &gt;&gt; /data/release/trimlog.txt</span><br></pre></td></tr></table></figure>
 <h2 id="bash-shell-代码"><a href="#bash-shell-代码" class="headerlink" title="bash shell 代码"></a>bash shell 代码</h2><blockquote>
@@ -150,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://wsgzao.github.io/post/trimlog/" data-title="基于 bash shell 脚本制定灵活的 trimlog 日志清理策略 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/trimlog/" data-title="基于 bash shell 脚本制定灵活的 trimlog 日志清理策略 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -500,7 +500,7 @@ $(document).ready(function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-77732745-1', 'wsgzao.github.io');  
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
 ga('send', 'pageview');
 </script>
 
