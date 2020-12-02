@@ -21,7 +21,7 @@
     <title>Redis(Codis) 分布式集群部署实践 | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="wsgzao">
+    <meta name="author" content="liaojiaxin">
     
 
     
@@ -32,13 +32,13 @@
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="Redis(Codis)分布式集群部署实践">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190724154111.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190724162130.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190724154111.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190724162130.png">
 <meta property="og:updated_time" content="2020-07-14T03:50:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis(Codis) 分布式集群部署实践">
 <meta name="twitter:description" content="Redis(Codis)分布式集群部署实践">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190724154111.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190724154111.png">
 
     
     <link rel="alternative" href="/atom.xml" title="HelloDog" type="application/atom+xml">
@@ -103,7 +103,7 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="wsgzao" target="_blank" itemprop="author">wsgzao</a>
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
     <time datetime="2020-07-13T06:59:49.000Z" itemprop="datePublished"> 发表于 2020-07-13</time>
@@ -119,7 +119,7 @@
 		
 		</div>
 		 -->
-		<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190724154111.png" alt=""></p>
+		<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190724154111.png" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Codis 3.x 稳定版本已经很久没更新了，虽然有缺点也称不上完美但确实可以有效解决横向扩展问题。Redis 5.0 因为所谓的 <code>政治正确</code> 把 master-slave 名字修改为 master-replica 上了开源社区热议排行榜，客户端 SDK 的 API 完全兼容 redis-cluster 在 <code>Redis 6.0</code> 官方推出 <code>redis-cluster-proxy</code> 集群代理方案前成本很高，目前也需要等待社区验证新方案的稳定性，所以大家在选择 Redis 集群方案的时候除了自研和 <code>Codis</code> 或者 <code>Pika</code> 以外依然没有太多的选择余地。我们使用 Codis 的原因也很简单，Redis 主从模式内存从 128GB 一路增加到 1TB 后硬件终于受不鸟了，要么像数据库借鉴 “拆” 的奥义做到庖丁解牛一般，不然摆在眼前的路基本只剩下相对成熟可靠的 Codis。本文分享了 Redis 高可用技术解决方案选型的参考文章和 Codis 集群搭建的过程，希望对大家有帮助。</p>
 <blockquote>
 <p>Redis(Codis)分布式集群部署实践</p>
@@ -182,7 +182,7 @@
 <p>Redis 获得动态扩容 / 缩容的能力，增减 redis 实例对 client 完全透明、不需要重启服务，不需要业务方担心 Redis 内存爆掉的问题. 也不用担心申请太大, 造成浪费. 业务方也不需要自己维护 Redis.</p>
 <p>Codis 支持水平扩容 / 缩容，扩容可以直接界面的 “Auto Rebalance” 按钮，缩容只需要将要下线的实例拥有的 slot 迁移到其它实例，然后在界面上删除下线的 group 即可。</p>
 <p><a href="https://github.com/CodisLabs/codis/blob/release3.2/doc/tutorial_zh.md" target="_blank" rel="noopener">Codis 使用文档</a><br><a href="https://github.com/CodisLabs/codis/blob/release3.2/doc/FAQ_zh.md" target="_blank" rel="noopener">Codis FAQ</a><br><a href="https://github.com/CodisLabs/codis/blob/release3.2/doc/unsupported_cmds.md" target="_blank" rel="noopener">Codis 不支持的命令列表</a><br><a href="https://github.com/CodisLabs/codis/blob/release3.2/doc/redis_change_zh.md" target="_blank" rel="noopener">redis 修改部分（增加若干指令）</a><br><a href="https://github.com/CodisLabs/codis/blob/release3.2/doc/benchmark.md" target="_blank" rel="noopener">Performance (Benchmark)</a></p>
-<h2 id="Codis-架构"><a href="#Codis-架构" class="headerlink" title="Codis 架构"></a>Codis 架构</h2><p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190724162130.png" alt=""></p>
+<h2 id="Codis-架构"><a href="#Codis-架构" class="headerlink" title="Codis 架构"></a>Codis 架构</h2><p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190724162130.png" alt=""></p>
 <p>集群配置前需要了解架构，集群分片主要分三种：</p>
 <ol>
 <li>客户端分片：这个需要自己开发，对客户端要求严格，集群很难扩容</li>
@@ -433,7 +433,7 @@
   
 <div class="github-card">
 <p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="wsgzao" data-theme="medium"></div>
+<div class="github-card" data-github="liaojiaxin" data-theme="medium"></div>
 <script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
 </div>
 
@@ -525,7 +525,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
 		
-		<a href="/about" target="_blank" title="wsgzao">wsgzao</a>
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
 		
 		
 		</p>
@@ -669,7 +669,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-var disqus_shortname = 'wsgzao';
+var disqus_shortname = 'liaojiaxin';
 
 (function(){
   var dsq = document.createElement('script');

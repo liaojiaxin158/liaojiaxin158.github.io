@@ -21,7 +21,7 @@
     <title>HPQLOCFG 批量管理 HP iLO 实践 | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="wsgzao">
+    <meta name="author" content="liaojiaxin">
     
 
     
@@ -100,7 +100,7 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="wsgzao" target="_blank" itemprop="author">wsgzao</a>
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
     <time datetime="2018-05-06T08:40:53.000Z" itemprop="datePublished"> 发表于 2018-05-06</time>
@@ -132,7 +132,7 @@
 <h2 id="实践方法"><a href="#实践方法" class="headerlink" title="实践方法"></a>实践方法</h2><blockquote>
 <p>拷贝 HPQLOCFG.exe 和相关 dll 文件至脚本当前路径</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">file://C:\Users\wsgzao\Desktop\ilo_ntp	(1 folders, 12 files, 211.96 KB, 3.70 MB <span class="keyword">in</span> total.)</span><br><span class="line">│  172.25.240.45	266 bytes</span><br><span class="line">│  HPQLOCFG.exe	59.00 KB</span><br><span class="line">│  HPQLOCFG.exe.config	712 bytes</span><br><span class="line">│  HPSSLConnection.dll	13.50 KB</span><br><span class="line">│  ilo_ntp.log	0 bytes</span><br><span class="line">│  ip.txt	150 bytes</span><br><span class="line">│  log.txt	2.24 KB</span><br><span class="line">│  Parser.dll	133.00 KB</span><br><span class="line">│  README.txt	2.03 KB</span><br><span class="line">│  SetNTP.bat	181 bytes</span><br><span class="line">│  SetNTP.xml	555 bytes</span><br><span class="line">│  操作步骤. txt	381 bytes</span><br><span class="line">└─HP 官方文件	(0 folders, 3 files, 3.50 MB, 3.50 MB <span class="keyword">in</span> total.)</span><br><span class="line">        HPE iLO 4 脚本和命令行指南. pdf	2.95 MB</span><br><span class="line">        SP58155.exe	392.67 KB</span><br><span class="line">        windows-LOsamplescripts4.80.0.zip	168.34 KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">file://C:\Users\liaojiaxin\Desktop\ilo_ntp	(1 folders, 12 files, 211.96 KB, 3.70 MB <span class="keyword">in</span> total.)</span><br><span class="line">│  172.25.240.45	266 bytes</span><br><span class="line">│  HPQLOCFG.exe	59.00 KB</span><br><span class="line">│  HPQLOCFG.exe.config	712 bytes</span><br><span class="line">│  HPSSLConnection.dll	13.50 KB</span><br><span class="line">│  ilo_ntp.log	0 bytes</span><br><span class="line">│  ip.txt	150 bytes</span><br><span class="line">│  log.txt	2.24 KB</span><br><span class="line">│  Parser.dll	133.00 KB</span><br><span class="line">│  README.txt	2.03 KB</span><br><span class="line">│  SetNTP.bat	181 bytes</span><br><span class="line">│  SetNTP.xml	555 bytes</span><br><span class="line">│  操作步骤. txt	381 bytes</span><br><span class="line">└─HP 官方文件	(0 folders, 3 files, 3.50 MB, 3.50 MB <span class="keyword">in</span> total.)</span><br><span class="line">        HPE iLO 4 脚本和命令行指南. pdf	2.95 MB</span><br><span class="line">        SP58155.exe	392.67 KB</span><br><span class="line">        windows-LOsamplescripts4.80.0.zip	168.34 KB</span><br></pre></td></tr></table></figure>
 <p>编写 XML 文件 SetNTP.xml</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RIBCL</span> <span class="attr">VERSION</span>=<span class="string">"2.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LOGIN</span> <span class="attr">USER_LOGIN</span>=<span class="string">"iloadmin"</span> <span class="attr">PASSWORD</span>=<span class="string">"iloadmin"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RIB_INFO</span> <span class="attr">MODE</span>=<span class="string">"write"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">MOD_NETWORK_SETTINGS</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">DHCP_SNTP_SETTINGS</span> <span class="attr">value</span>=<span class="string">"No"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">DHCPV6_SNTP_SETTINGS</span> <span class="attr">value</span>=<span class="string">"No"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">SNTP_SERVER1</span> <span class="attr">value</span>=<span class="string">"%ntp1%"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TIMEZONE</span> <span class="attr">value</span>=<span class="string">"Asia/Shanghai"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">MOD_NETWORK_SETTINGS</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">MOD_GLOBAL_SETTINGS</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">PROPAGATE_TIME_TO_HOST</span> <span class="attr">VALUE</span>=<span class="string">"No"</span> /&gt;</span> </span><br><span class="line">            <span class="tag">&lt;/<span class="name">MOD_GLOBAL_SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">RIB_INFO</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LOGIN</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">RIBCL</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>编写批处理  SetNTP.bat</p>
@@ -228,7 +228,7 @@
   
 <div class="github-card">
 <p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="wsgzao" data-theme="medium"></div>
+<div class="github-card" data-github="liaojiaxin" data-theme="medium"></div>
 <script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
 </div>
 
@@ -320,7 +320,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
 		
-		<a href="/about" target="_blank" title="wsgzao">wsgzao</a>
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
 		
 		
 		</p>
@@ -464,7 +464,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-var disqus_shortname = 'wsgzao';
+var disqus_shortname = 'liaojiaxin';
 
 (function(){
   var dsq = document.createElement('script');

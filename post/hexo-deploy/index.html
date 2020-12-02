@@ -21,7 +21,7 @@
     <title>在 Windows 和 Macbook 上自动更新和推送 Hexo 至 GitHub | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="wsgzao">
+    <meta name="author" content="liaojiaxin">
     
 
     
@@ -100,7 +100,7 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="wsgzao" target="_blank" itemprop="author">wsgzao</a>
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
     <time datetime="2018-07-31T12:40:07.000Z" itemprop="datePublished"> 发表于 2018-07-31</time>
@@ -131,7 +131,7 @@
 <h2 id="MacBook"><a href="#MacBook" class="headerlink" title="MacBook"></a>MacBook</h2><blockquote>
 <p>python3 deploy_hexo.py</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">hexo = os.path.join(os.getcwd(), <span class="string">"hexo"</span>)</span><br><span class="line">wsgzao = os.path.join(os.getcwd(), <span class="string">"liaojiaxin158.github.io"</span>)</span><br><span class="line"></span><br><span class="line">home = os.getcwd()</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"current directory %s"</span> % home)</span><br><span class="line"></span><br><span class="line">os.chdir(hexo)</span><br><span class="line">retval = os.getcwd()</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"chdir to hexo %s"</span> % retval)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'hexo clean'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'hexo g'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">os.chdir(wsgzao)</span><br><span class="line">retval = os.getcwd()</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"chdir to wsgzao %s"</span> % retval)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'rm -rf about archives categories css fancybox font img index js page post'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'cp -rf ../hexo/public/* ./'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'git add *'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line">subprocess.call([<span class="string">'git commit -m"mod"'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line">subprocess.call([<span class="string">'git push'</span>], shell=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>  
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">hexo = os.path.join(os.getcwd(), <span class="string">"hexo"</span>)</span><br><span class="line">liaojiaxin = os.path.join(os.getcwd(), <span class="string">"liaojiaxin158.github.io"</span>)</span><br><span class="line"></span><br><span class="line">home = os.getcwd()</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"current directory %s"</span> % home)</span><br><span class="line"></span><br><span class="line">os.chdir(hexo)</span><br><span class="line">retval = os.getcwd()</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"chdir to hexo %s"</span> % retval)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'hexo clean'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'hexo g'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">os.chdir(liaojiaxin)</span><br><span class="line">retval = os.getcwd()</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"chdir to liaojiaxin %s"</span> % retval)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'rm -rf about archives categories css fancybox font img index js page post'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'cp -rf ../hexo/public/* ./'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">subprocess.call([<span class="string">'git add *'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line">subprocess.call([<span class="string">'git commit -m"mod"'</span>], shell=<span class="keyword">True</span>)</span><br><span class="line">subprocess.call([<span class="string">'git push'</span>], shell=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -207,7 +207,7 @@
   
 <div class="github-card">
 <p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="wsgzao" data-theme="medium"></div>
+<div class="github-card" data-github="liaojiaxin" data-theme="medium"></div>
 <script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
 </div>
 
@@ -299,7 +299,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
 		
-		<a href="/about" target="_blank" title="wsgzao">wsgzao</a>
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
 		
 		
 		</p>
@@ -443,7 +443,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-var disqus_shortname = 'wsgzao';
+var disqus_shortname = 'liaojiaxin';
 
 (function(){
   var dsq = document.createElement('script');

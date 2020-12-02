@@ -21,7 +21,7 @@
     <title>使用 certbot 代替 acme.sh 免费申请 wildcard 通配符证书和自动更新实践小结 | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="wsgzao">
+    <meta name="author" content="liaojiaxin">
     
 
     
@@ -32,14 +32,14 @@
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="使用certbot代替acme.sh免费申请wildcard通配符证书和自动更新实践小结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200219171300.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200220153747.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200220153532.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200219171300.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200220153747.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200220153532.png">
 <meta property="og:updated_time" content="2020-04-29T07:07:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 certbot 代替 acme.sh 免费申请 wildcard 通配符证书和自动更新实践小结">
 <meta name="twitter:description" content="使用certbot代替acme.sh免费申请wildcard通配符证书和自动更新实践小结">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200219171300.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200219171300.png">
 
     
     <link rel="alternative" href="/atom.xml" title="HelloDog" type="application/atom+xml">
@@ -104,7 +104,7 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="wsgzao" target="_blank" itemprop="author">wsgzao</a>
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
     <time datetime="2020-04-13T06:59:49.000Z" itemprop="datePublished"> 发表于 2020-04-13</time>
@@ -120,7 +120,7 @@
 		
 		</div>
 		 -->
-		<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200219171300.png" alt=""></p>
+		<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200219171300.png" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为 Google Chrome 和运营商劫持干扰访问者体验的努力推动了大型网站加速应用全站 HTTPS，而 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 这个项目通过自动化把配置和维护 HTTPS 变得更加简单，Let’s Encrypt 设计了一个 ACME 协议目前版本是 v2，并在 2018 年支持通配符证书 <a href="https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579" target="_blank" rel="noopener">Wildcard Certificate Support is Live</a>。官网主推的客户端是<a href="https://certbot.eff.org/" target="_blank" rel="noopener">Certbot</a>，任何人都可以基于 ACME 协议实现一个客户端，比如大名鼎鼎的<a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="noopener">acme.sh</a>。本文主要使用<a href="https://github.com/certbot/certbot/tree/master/certbot-dns-route53" target="_blank" rel="noopener">certbot-dns-route53</a> 插件为例，由于 certbot 官方 DNS Plugins 插件支持有限，如果你需要支持 aliyun/tencentyun/godaddy dns 可以参考 <a href="https://github.com/ywdblog/certbot-letencrypt-wildcardcertificates-alydns-au" target="_blank" rel="noopener">certbot-letencrypt-wildcardcertificates-alydns-au</a>，随着 Docker 容器化和 K8S(Kubernetes) 的进击，相信会促进 certbot 多样化玩法。</p>
 <blockquote>
 <p>使用 certbot 代替 acme.sh 免费申请 wildcard 通配符证书和自动更新实践小结</p>
@@ -149,8 +149,8 @@
 <li>HTTP 和 HTTPS 使用的是完全不同的连接方式，用的端口也不一样，前者是 80，后者是 443。</li>
 <li>HTTP 的连接很简单，是无状态的；HTTPS 协议是由 SSL+HTTP 协议构建的可进行加密传输、身份认证的网络协议，比 HTTP 协议安全。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200220153747.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200220153532.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200220153747.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200220153532.png" alt=""></p>
 <p><a href="https://serverguy.com/ssl/types-of-ssl-certificates/" target="_blank" rel="noopener">Types of SSL Certificates for a Secure Business Website</a></p>
 <h3 id="关于-TLS-SSL"><a href="#关于-TLS-SSL" class="headerlink" title="关于 TLS/SSL"></a>关于 TLS/SSL</h3><p>传输层安全协议（英语：Transport Layer Security，缩写：TLS），及其前身安全套接层（Secure Sockets Layer，缩写：SSL）是一种安全协议，目的是为互联网通信，提供安全及数据完整性保障</p>
 <h3 id="为什么要部署-HTTPS"><a href="#为什么要部署-HTTPS" class="headerlink" title="为什么要部署 HTTPS"></a>为什么要部署 HTTPS</h3><p>说到底，就是 HTTPS 更安全。甚至为了安全，一个专业可靠的网站， HTTPS 是必须的。 Firefox 和 Chrome 都计划将没有配置 SSL 加密的 HTTP 网站标记为不安全（貌似 Firefox 50 已经这么干了），目前它们也正在联合其他相关的基金会与公司推动整个互联网 HTTPS 化，现在大家访问的一些主要的网站。如 Google 多年前就已经全部启用 HTTPS ，国内的淘宝、搜狗、知乎、百度等等也全面 HTTPS 了。甚至 Google 的搜索结果也正在给予 HTTPS 的网站更高的排名和优先收录权。</p>
@@ -385,7 +385,7 @@
   
 <div class="github-card">
 <p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="wsgzao" data-theme="medium"></div>
+<div class="github-card" data-github="liaojiaxin" data-theme="medium"></div>
 <script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
 </div>
 
@@ -477,7 +477,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
 		
-		<a href="/about" target="_blank" title="wsgzao">wsgzao</a>
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
 		
 		
 		</p>
@@ -621,7 +621,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-var disqus_shortname = 'wsgzao';
+var disqus_shortname = 'liaojiaxin';
 
 (function(){
   var dsq = document.createElement('script');

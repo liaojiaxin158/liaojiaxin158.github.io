@@ -21,7 +21,7 @@
     <title>LVS 和 Keepalived 的原理介绍和配置实践 | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="wsgzao">
+    <meta name="author" content="liaojiaxin">
     
 
     
@@ -32,15 +32,15 @@
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="LVS和Keepalived的原理介绍和配置实践">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823142206.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823142555.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823150520.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823151135.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823142206.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823142555.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823150520.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823151135.png">
 <meta property="og:updated_time" content="2019-09-06T11:23:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LVS 和 Keepalived 的原理介绍和配置实践">
 <meta name="twitter:description" content="LVS和Keepalived的原理介绍和配置实践">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823142206.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823142206.png">
 
     
     <link rel="alternative" href="/atom.xml" title="HelloDog" type="application/atom+xml">
@@ -105,7 +105,7 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="wsgzao" target="_blank" itemprop="author">wsgzao</a>
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
     <time datetime="2019-09-03T05:59:49.000Z" itemprop="datePublished"> 发表于 2019-09-03</time>
@@ -323,7 +323,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="基本工作原理"><a href="#基本工作原理" class="headerlink" title="基本工作原理"></a>基本工作原理</h3><p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823142206.png" alt=""></p>
+<h3 id="基本工作原理"><a href="#基本工作原理" class="headerlink" title="基本工作原理"></a>基本工作原理</h3><p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823142206.png" alt=""></p>
 <ol>
 <li>当用户向负载均衡调度器（Director Server）发起请求，调度器将请求发往至内核空间</li>
 <li>PREROUTING 链首先会接收到用户请求，判断目标 IP 确定是本机 IP，将数据包发往 INPUT 链</li>
@@ -342,7 +342,7 @@
 </blockquote>
 <p>LVS 是四层负载均衡，也就是说建立在 OSI 模型的第四层——传输层之上，传输层上有我们熟悉的 TCP/UDP，LVS 支持 TCP/UDP 的负载均衡。因为 LVS 是四层负载均衡，因此它相对于其它高层负载均衡的解决办法，比如 DNS 域名轮流解析、应用层负载的调度、客户端的调度等，它的效率是非常高的。</p>
 <p>LVS 的 IP 负载均衡技术是通过 IPVS 模块来实现的，IPVS 是 LVS 集群系统的核心软件，它的主要作用是：安装在 Director Server 上，同时在 Director Server 上虚拟出一个 IP 地址，用户必须通过这个虚拟的 IP 地址访问服务。这个虚拟 IP 一般称为 LVS 的 VIP，即 Virtual IP。访问的请求首先经过 VIP 到达负载调度器，然后由负载调度器从 Real Server 列表中选取一个服务节点响应用户的请求。 当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的 Real Server 节点，而 Real Server 节点如何返回数据给用户，是 IPVS 实现的重点技术，IPVS 实现负载均衡机制有几种，分别是 NAT、DR、TUN 及 FULLNAT。</p>
-<h4 id="LVS-NAT"><a href="#LVS-NAT" class="headerlink" title="LVS/NAT"></a>LVS/NAT</h4><p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823142555.png" alt=""></p>
+<h4 id="LVS-NAT"><a href="#LVS-NAT" class="headerlink" title="LVS/NAT"></a>LVS/NAT</h4><p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823142555.png" alt=""></p>
 <blockquote>
 <p>重点理解 NAT 方式的实现原理和数据包的改变。</p>
 </blockquote>
@@ -362,7 +362,7 @@
 <p>（1）RIP 和 DIP 必须在同一个 IP 网络，且应该使用私网地址；RS 的网关要指向 DIP；<br>（2）请求报文和响应报文都必须经由 Director 转发；Director 易于成为系统瓶颈；<br>（3）支持端口映射，可修改请求报文的目标 PORT；<br>（4）vs 必须是 Linux 系统，rs 可以是任意系统；</p>
 <p>缺点：在整个过程中，所有输入输出的流量都要经过 LVS 调度服务器。显然，LVS 调度服务器的网络 I/O 压力将会非常大，因此很容易成为瓶颈，特别是对于请求流量很小，而响应流量很大的 Web 类应用来说尤为如此。</p>
 <p>优点：NAT 模式的优点在于配置及管理简单，由于了使用 NAT 技术，LVS 调度器及应用服务器可以在不同网段中，网络架构更灵活，应用服务器只需要进行简单的网络设定即可加入集群。</p>
-<h4 id="LVS-DR"><a href="#LVS-DR" class="headerlink" title="LVS/DR"></a>LVS/DR</h4><p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823150520.png" alt=""></p>
+<h4 id="LVS-DR"><a href="#LVS-DR" class="headerlink" title="LVS/DR"></a>LVS/DR</h4><p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823150520.png" alt=""></p>
 <blockquote>
 <p>重点将请求报文的目标 MAC 地址设定为挑选出的 RS 的 MAC 地址</p>
 </blockquote>
@@ -394,7 +394,7 @@
 <p>注意：<br>(1) 确保前端路由器将目标 IP 为 VIP 的请求报文发往 Director：<br>    (a) 在前端网关做静态绑定；<br>    (b) 在 RS 上使用 arptables；<br>    (c) 在 RS 上修改内核参数以限制 arp 通告及应答级别；<br>            arp_announce<br>            arp_ignore<br>(2) RS 的 RIP 可以使用私网地址，也可以是公网地址；RIP 与 DIP 在同一 IP 网络；RIP 的网关不能指向 DIP，以确保响应报文不会经由 Director；<br>(3) RS 跟 Director 要在同一个物理网络；<br>(4) 请求报文要经由 Director，但响应不能经由 Director，而是由 RS 直接发往 Client；<br>(5) 此模式不支持端口映射；</p>
 <p>缺点：唯一的缺陷在于它要求 LVS 调度器及所有应用服务器在同一个网段中，因此不能实现集群的跨网段应用。</p>
 <p>优点：可见在处理过程中 LVS Route 只处理请求的直接路由转发，所有响应结果由各个应用服务器自行处理，并对用户进行回复，网络流量将集中在 LVS 调度器之上。</p>
-<h4 id="LVS-TUN"><a href="#LVS-TUN" class="headerlink" title="LVS/TUN"></a>LVS/TUN</h4><p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190823151135.png" alt=""></p>
+<h4 id="LVS-TUN"><a href="#LVS-TUN" class="headerlink" title="LVS/TUN"></a>LVS/TUN</h4><p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190823151135.png" alt=""></p>
 <blockquote>
 <p>在原有的 IP 报文外再次封装多一层 IP 首部，内部 IP 首部(源地址为 CIP，目标 IIP 为 VIP)，外层 IP 首部(源地址为 DIP，目标 IP 为 RIP)</p>
 </blockquote>
@@ -639,7 +639,7 @@
   
 <div class="github-card">
 <p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="wsgzao" data-theme="medium"></div>
+<div class="github-card" data-github="liaojiaxin" data-theme="medium"></div>
 <script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
 </div>
 
@@ -731,7 +731,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
 		
-		<a href="/about" target="_blank" title="wsgzao">wsgzao</a>
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
 		
 		
 		</p>
@@ -875,7 +875,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-var disqus_shortname = 'wsgzao';
+var disqus_shortname = 'liaojiaxin';
 
 (function(){
   var dsq = document.createElement('script');

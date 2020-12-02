@@ -21,7 +21,7 @@
     <title>ethtool 原理介绍和解决网卡丢包排查思路 | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="wsgzao">
+    <meta name="author" content="liaojiaxin">
     
 
     
@@ -32,14 +32,14 @@
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="ethtool原理介绍和解决网卡丢包排查思路">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190704163040.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190704163052.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190704163113.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190704163040.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190704163052.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190704163113.png">
 <meta property="og:updated_time" content="2020-06-22T10:38:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ethtool 原理介绍和解决网卡丢包排查思路">
 <meta name="twitter:description" content="ethtool原理介绍和解决网卡丢包排查思路">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190704163040.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190704163040.png">
 
     
     <link rel="alternative" href="/atom.xml" title="HelloDog" type="application/atom+xml">
@@ -104,7 +104,7 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="wsgzao" target="_blank" itemprop="author">wsgzao</a>
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
     <time datetime="2020-06-22T06:59:49.000Z" itemprop="datePublished"> 发表于 2020-06-22</time>
@@ -148,7 +148,7 @@
 <li>经过 TCP/IP 协议逐层处理。</li>
 <li>应用程序通过 <code>read()</code> 从 <code>socket buffer</code> 读取数据。</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190704163040.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190704163040.png" alt=""></p>
 <h3 id="将网卡收到的数据包转移到主机内存（NIC-与驱动交互）"><a href="#将网卡收到的数据包转移到主机内存（NIC-与驱动交互）" class="headerlink" title="将网卡收到的数据包转移到主机内存（NIC 与驱动交互）"></a>将网卡收到的数据包转移到主机内存（NIC 与驱动交互）</h3><p>NIC 在接收到数据包之后，首先需要将数据同步到内核中，这中间的桥梁是 <code>rx ring buffer</code>。它是由 NIC 和驱动程序共享的一片区域，事实上，<code>rx ring buffer</code> 存储的并不是实际的 packet 数据，而是一个描述符，这个描述符指向了它真正的存储地址，具体流程如下：</p>
 <ol>
 <li>驱动在内存中分配一片缓冲区用来接收数据包，叫做 <code>sk_buffer</code>；</li>
@@ -158,7 +158,7 @@
 <li>网卡收到新的数据包；</li>
 <li>网卡将新数据包通过 DMA 直接写到 <code>sk_buffer</code> 中。</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190704163052.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190704163052.png" alt=""></p>
 <p>当驱动处理速度跟不上网卡收包速度时，驱动来不及分配缓冲区，NIC 接收到的数据包无法及时写到 <code>sk_buffer</code>，就会产生堆积，当 NIC 内部缓冲区写满后，就会丢弃部分数据，引起丢包。这部分丢包为 <code>rx_fifo_errors</code>，在 <code>/proc/net/dev</code> 中体现为 fifo 字段增长，在 ifconfig 中体现为 overruns 指标增长。</p>
 <h3 id="通知系统内核处理（驱动与-Linux-内核交互）"><a href="#通知系统内核处理（驱动与-Linux-内核交互）" class="headerlink" title="通知系统内核处理（驱动与 Linux 内核交互）"></a>通知系统内核处理（驱动与 Linux 内核交互）</h3><p>这个时候，数据包已经被转移到了 <code>sk_buffer</code> 中。前文提到，这是驱动程序在内存中分配的一片缓冲区，并且是通过 DMA 写入的，这种方式不依赖 CPU 直接将数据写到了内存中，意味着对内核来说，其实并不知道已经有新数据到了内存中。那么如何让内核知道有新数据进来了呢？答案就是中断，通过中断告诉内核有新数据进来了，并需要进行后续处理。</p>
 <p>提到中断，就涉及到硬中断和软中断，首先需要简单了解一下它们的区别：</p>
@@ -167,7 +167,7 @@
 <li>软中断： 由硬中断对应的中断处理程序生成，往往是预先在代码里实现好的，不具有随机性。（除此之外，也有应用程序触发的软中断，与本文讨论的网卡收包无关。）也被称为下半部分。</li>
 </ul>
 <p><strong> 当 NIC 把数据包通过 DMA 复制到内核缓冲区 <code>sk_buffer</code> 后，NIC 立即发起一个硬件中断。CPU 接收后，首先进入上半部分，网卡中断对应的中断处理程序是网卡驱动程序的一部分，之后由它发起软中断，进入下半部分，开始消费 <code>sk_buffer</code> 中的数据，交给内核协议栈处理。</strong></p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20190704163113.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20190704163113.png" alt=""></p>
 <p>通过中断，能够快速及时地响应网卡数据请求，但如果数据量大，那么会产生大量中断请求，CPU 大部分时间都忙于处理中断，效率很低。为了解决这个问题，现在的内核及驱动都采用一种叫 NAPI（new API）的方式进行数据处理，其原理可以简单理解为 中断 + 轮询，在数据量大时，一次中断后通过轮询接收一定数量包再返回，避免产生多次中断。</p>
 <h2 id="ifconfig-解释"><a href="#ifconfig-解释" class="headerlink" title="ifconfig 解释"></a>ifconfig 解释</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ifconfig eth0</span></span><br><span class="line">eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt; mtu 1500</span><br><span class="line">inet 192.168.1.135 netmask 255.255.255.0 broadcast 192.168.1.255</span><br><span class="line">inet6 fe80::20c:29ff:fe9b:52d3 prefixlen 64 scopeid 0x20&lt;link&gt;</span><br><span class="line">ether 00:0c:29:9b:52:d3 txqueuelen 1000 (Ethernet)</span><br><span class="line">RX packets 833 bytes 61846 (60.3 KiB)</span><br><span class="line">RX errors 0 dropped 0 overruns 0 frame 0</span><br><span class="line">TX packets 122 bytes 9028 (8.8 KiB)</span><br><span class="line">TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0</span><br></pre></td></tr></table></figure>
 <p>(1) RX errors</p>
@@ -318,7 +318,7 @@
   
 <div class="github-card">
 <p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="wsgzao" data-theme="medium"></div>
+<div class="github-card" data-github="liaojiaxin" data-theme="medium"></div>
 <script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
 </div>
 
@@ -410,7 +410,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
 		
-		<a href="/about" target="_blank" title="wsgzao">wsgzao</a>
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
 		
 		
 		</p>
@@ -554,7 +554,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-var disqus_shortname = 'wsgzao';
+var disqus_shortname = 'liaojiaxin';
 
 (function(){
   var dsq = document.createElement('script');

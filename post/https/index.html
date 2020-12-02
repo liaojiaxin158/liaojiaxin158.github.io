@@ -21,7 +21,7 @@
     <title>图解 HTTPS | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="wsgzao">
+    <meta name="author" content="liaojiaxin">
     
 
     
@@ -32,18 +32,18 @@
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="图解HTTPS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171326.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171633.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171725.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171839.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171859.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171918.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171949.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171326.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171633.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171725.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171839.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171859.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171918.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171949.png">
 <meta property="og:updated_time" content="2020-05-10T09:26:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解 HTTPS">
 <meta name="twitter:description" content="图解HTTPS">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171326.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171326.png">
 
     
     <link rel="alternative" href="/atom.xml" title="HelloDog" type="application/atom+xml">
@@ -108,7 +108,7 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="wsgzao" target="_blank" itemprop="author">wsgzao</a>
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
     <time datetime="2020-05-10T06:59:49.000Z" itemprop="datePublished"> 发表于 2020-05-10</time>
@@ -124,7 +124,7 @@
 		
 		</div>
 		 -->
-		<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171326.png" alt=""></p>
+		<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171326.png" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://weread.qq.com/web/reader/3da32b505dd9f43da9a1aca" target="_blank" rel="noopener">图解 HTTP</a>这本书蛮多人推荐的，在搜索 HTTPS 相关知识的时候正好看到 <a href="https://www.waitalone.cn/technology/https.html" target="_blank" rel="noopener">图解 HTTPS</a> 的文章，细节解释通俗易懂，申请个人转载方便回顾学习。</p>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><p>2020 年 05 月 10 日 - 初稿</p>
 <p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/https/">https://liaojiaxin158.github.io/post/https/</a></p>
@@ -138,11 +138,11 @@
 <p>这样，https 的存在就具备了合理性，https 中的 s 表示 SSL 或者 TLS，就是在原 http 的基础上加上一层用于数据加密、解密、身份认证的安全层。</p>
 <h2 id="一层层揭开-HTTPS-神秘面纱"><a href="#一层层揭开-HTTPS-神秘面纱" class="headerlink" title="一层层揭开 HTTPS 神秘面纱"></a>一层层揭开 HTTPS 神秘面纱</h2><p>本文试图通过层层渐进方式来通俗的阐述 https 的原理，若有错误，欢迎大家指正。</p>
 <p>虽然要层层渐进，但是我们不妨先奉上刚画好的还热乎着的 https 通信完整流程图：</p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171633.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171633.png" alt=""></p>
 <p>从上图可以看到，右边有一堆钥匙，一看到钥匙我们就能想到这个过程免不了加密。另外，那些钥匙长得还不一样，有些只有一把，有些是一对，嗯，是的，你看得真仔细。</p>
 <p>好的，扯远了，现在开始层层渐进。</p>
 <h3 id="第一层（安全传输数据）"><a href="#第一层（安全传输数据）" class="headerlink" title="第一层（安全传输数据）"></a>第一层（安全传输数据）</h3><p>假如我们要实现一个功能：<strong> 一个用户 A 给一个用户 B 发消息，但是要保证这个消息的内容只能被 A 和 B 知道，其他的无论是墨渊上神还是太上老君都没办法破解或者篡改消息的内容。</strong></p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171725.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171725.png" alt=""></p>
 <p>如上图，需求就是这么简单，A 给 B 发一条消息，因为比较私密，不想被其他人看到。</p>
 <p>由于消息不想被其他人看到，所以我们自然而然就会想到为消息加密，并且只有 A 和 B 才有解密的密钥。这里需要考虑几点：</p>
 <ol>
@@ -156,12 +156,12 @@
 </ol>
 <p>对于第二个问题，这是导致整个 https 通信过程很复杂的根本原因。 如果 A 或 B 直接把他们之间用于解密的密钥通过互联网传输给对方，那一旦密钥被第三者劫持，第三者就能正确解密 A,B 之间的通信数据。</p>
 <h3 id="第二层（安全传输密钥）"><a href="#第二层（安全传输密钥）" class="headerlink" title="第二层（安全传输密钥）"></a>第二层（安全传输密钥）</h3><p>通过第一层的描述，第二层需要解决的问题是：安全地传输 A,B 之间用于解密数据的密钥。</p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171839.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171839.png" alt=""></p>
 <p>因为如果传输过程中这把密钥被第三者拿到了，就能解密传通信数据，所以，这把密钥必须得加密，就算第三者劫持到这把加密过的密钥，他也不能解密，得到真正的密钥。</p>
 <p>这里有一个问题，那要用什么方式加密这把密钥呢？如果使用对称加密，那这个对称加密的密钥又怎么安全地告诉对方呢？完了，陷入死循环了…. 所以，一定不能用对称加密</p>
 <p>那就是用非对称加密咯，那如何应用非对称加密来加密那把密钥呢？</p>
 <p>考虑如下方式：</p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171859.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171859.png" alt=""></p>
 <ol>
 <li>客户端： 我要发起 HTTPS 请求，麻烦给我一个非对称加密的公钥；</li>
 <li>服务器： (生成一对非对称加密的密钥对，然后把公钥发给客户端)，接着，这是公钥；</li>
@@ -175,11 +175,11 @@
 <li>要保证传输的密钥只能被服务器解密，就得保证用于加密密钥的公钥一定是服务器下发的，绝对不可能被第三方篡改过；</li>
 </ul>
 <p>因为还可能存在一种 “中间人攻击” 的情况，如下图：</p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171918.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171918.png" alt=""></p>
 <p>这种情况下，客户端和服务器之间通信的数据就完全被坏人破解了。</p>
 <h3 id="第三层（安全传输公钥）"><a href="#第三层（安全传输公钥）" class="headerlink" title="第三层（安全传输公钥）"></a>第三层（安全传输公钥）</h3><p>从上一层可以知道，要保证数据的安全，就必须得保证服务器给客户端下发的公钥是真正的公钥，而不是中间人伪造的公钥。那怎么保证呢？</p>
 <p>那就得引入数字证书了，数字证书是服务器主动去权威机构申请的，证书中包含了上一个图中的加密过的 A 公钥和权威机构的信息，所以服务器只需要给客户端下发数字证书即可。现在流程图如下：</p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20200510171949.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20200510171949.png" alt=""></p>
 <p>那数字证书中的 A 公钥是如何加密的呢？</p>
 <p>答案是非对称加密，只不过这里是使用只有权威机构自己才有的私钥加密。</p>
 <p>等一下，既然 A 公钥被权威机构的私钥加密了，那客户端收到证书之后怎么解密证书中的 A 公钥呢? 需要有权威机构的公钥才能解密啊！那这个权威机构的公钥又是怎么安全地传输给客户端的呢？感觉进入了鸡生蛋，蛋生鸡的悖论了~~</p>
@@ -280,7 +280,7 @@
   
 <div class="github-card">
 <p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="wsgzao" data-theme="medium"></div>
+<div class="github-card" data-github="liaojiaxin" data-theme="medium"></div>
 <script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
 </div>
 
@@ -372,7 +372,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
 		
-		<a href="/about" target="_blank" title="wsgzao">wsgzao</a>
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
 		
 		
 		</p>
@@ -516,7 +516,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-var disqus_shortname = 'wsgzao';
+var disqus_shortname = 'liaojiaxin';
 
 (function(){
   var dsq = document.createElement('script');

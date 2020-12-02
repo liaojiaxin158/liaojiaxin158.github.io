@@ -21,7 +21,7 @@
     <title>macOS 使用 XQuartz 支持 X11 实现 Linux 图形化界面显示 | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="wsgzao">
+    <meta name="author" content="liaojiaxin">
     
 
     
@@ -32,15 +32,15 @@
 <meta property="og:site_name" content="HelloDog">
 <meta property="og:description" content="macOS使用XQuartz支持X11实现Linux图形化界面显示">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120140500.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120140613.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120142156.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120143321.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120140500.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120140613.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120142156.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120143321.png">
 <meta property="og:updated_time" content="2020-11-20T08:03:49.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS 使用 XQuartz 支持 X11 实现 Linux 图形化界面显示">
 <meta name="twitter:description" content="macOS使用XQuartz支持X11实现Linux图形化界面显示">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120140500.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120140500.png">
 
     
     <link rel="alternative" href="/atom.xml" title="HelloDog" type="application/atom+xml">
@@ -105,7 +105,7 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="wsgzao" target="_blank" itemprop="author">wsgzao</a>
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
     <time datetime="2020-11-20T06:22:49.000Z" itemprop="datePublished"> 发表于 2020-11-20</time>
@@ -126,7 +126,7 @@
 <p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/x11/">https://liaojiaxin158.github.io/post/x11/</a></p>
 <hr>
 <h2 id="X11-介绍"><a href="#X11-介绍" class="headerlink" title="X11 介绍"></a>X11 介绍</h2><p>有些 Linux 服务器出于性能和效率的考虑，通常都是没有安装图形化界面的，那么图形化程序在服务器上压根儿就跑不起来，或者无法直接显示出来，这就很尴尬了！那么如何解决这个问题呢？可以基于 X11 Forwarding 技术 + MobaXterm/Xshell/SecureCRT/XQuartz 等第三方工具，就可以轻松搞定，是不是很简单？</p>
-<h3 id="X-协议"><a href="#X-协议" class="headerlink" title="X 协议"></a>X 协议</h3><p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120140500.png" alt=""></p>
+<h3 id="X-协议"><a href="#X-协议" class="headerlink" title="X 协议"></a>X 协议</h3><p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120140500.png" alt=""></p>
 <p>Linux 本身是没有图形化界面的，所谓的图形化界面系统只不过中 Linux 下的应用程序。这一点和 Windows 不一样。Windows 从 Windows 95 开始，图形界面就直接在系统内核中实现了，是操作系统不可或缺的一部分。Linux 的图形化界面，底层都是基于 X 协议。</p>
 <p>X 协议由 X server 和 X client 组成：</p>
 <ul>
@@ -134,13 +134,13 @@
 <li>X client (即 X 应用程序) 则主要负责事件的处理（即程序的逻辑）。</li>
 </ul>
 <p>举个例子，如果用户点击了鼠标左键，因为鼠标归 X server 管理，于是 X server 就捕捉到了鼠标点击这个动作，然后它将这个动作告诉 X client，因为 X client 负责程序逻辑，于是 X client 就根据程序预先设定的逻辑（例如画一个圆），告诉 X server 说：“请在鼠标点击的位置，画一个圆”。最后，X server 就响应 X client 的请求，在鼠标点击的位置，绘制并显示出一个圆。</p>
-<h3 id="X11-Forwarding"><a href="#X11-Forwarding" class="headerlink" title="X11 Forwarding"></a>X11 Forwarding</h3><p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120140613.png" alt=""></p>
+<h3 id="X11-Forwarding"><a href="#X11-Forwarding" class="headerlink" title="X11 Forwarding"></a>X11 Forwarding</h3><p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120140613.png" alt=""></p>
 <p>这么绕，有啥意义呢？当然有！</p>
 <p>许多时候 X server 和 X client 在同一台主机上，这看起来没什么。但是， X server 和 X client 完全可以运行在不同的机器上，只要彼此通过 X 协议通信即可。于是，我们就可以做一些 “神奇” 的事情，比如像本文开头谈到的，在本地显示 (X server)，运行在服务器上的 GUI 程序 (X client)。这样的操作可以通过 SSH X11 Forwarding (转发) 来实现。</p>
 <p>X11 中的 X 指的就是 X 协议，11 指的是采用 X 协议的第 11 个版本。</p>
 <h2 id="macOS-实现-X11-图形化界面显示"><a href="#macOS-实现-X11-图形化界面显示" class="headerlink" title="macOS 实现 X11 图形化界面显示"></a>macOS 实现 X11 图形化界面显示</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># macOS 安装 xquartz</span></span><br><span class="line">brew cask install xquartz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 xquartz，实测 `Allow connections from clients` 选项非必须条件</span></span><br><span class="line">Run Applications &gt; Utilities &gt; XQuartz.app</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 DISPLAY 环境变量</span></span><br><span class="line"><span class="built_in">export</span> DISPLAY=:0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 没有使用 xquartz 中 terminal 的话不会自动设置 DISPLAY 环境变量，可能会出现以下错误</span></span><br><span class="line">[root@VM-2-11-centos ~]<span class="comment"># firefox</span></span><br><span class="line">Failed to open connection to <span class="string">"session"</span> message bus: Unable to autolaunch a dbus-daemon without a <span class="variable">$DISPLAY</span> <span class="keyword">for</span> X11</span><br><span class="line">Running without a11y support!</span><br><span class="line">Error: no DISPLAY environment variable specified</span><br><span class="line"></span><br><span class="line"><span class="comment"># ssh 添加 - Y flag 登录远程主机</span></span><br><span class="line">ssh -Y user@host</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录成功后可能出现以下错误，安装 xauth 即可解决</span></span><br><span class="line">ssh -Y root@192.168.117.148</span><br><span class="line">X11 forwarding request failed on channel 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 远程主机安装 xauth，以 centos 为例，使用 xclock 可以测试图形化效果</span></span><br><span class="line">yum install -y xauth xclock</span><br><span class="line">xclock</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要浏览器支持安装 firefox 或者 chrome 即可</span></span><br><span class="line">yum install firefox</span><br><span class="line">firefox</span><br><span class="line"></span><br><span class="line">yum install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm</span><br><span class="line">/usr/bin/google-chrome-stable %U --no-sandbox</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120142156.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/wsgzao/storage-public/master/img/20201120143321.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120142156.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/liaojiaxin/storage-public/master/img/20201120143321.png" alt=""></p>
 <h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h3><ol>
 <li>Install <code>Xquartz</code> to get X11 support on MacOS. You can google <code>Xquartz</code> and download it from its official site, or install using HomeBrew.</li>
 </ol>
@@ -258,7 +258,7 @@
   
 <div class="github-card">
 <p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="wsgzao" data-theme="medium"></div>
+<div class="github-card" data-github="liaojiaxin" data-theme="medium"></div>
 <script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
 </div>
 
@@ -350,7 +350,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
 		
-		<a href="/about" target="_blank" title="wsgzao">wsgzao</a>
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
 		
 		
 		</p>
@@ -494,7 +494,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-var disqus_shortname = 'wsgzao';
+var disqus_shortname = 'liaojiaxin';
 
 (function(){
   var dsq = document.createElement('script');
