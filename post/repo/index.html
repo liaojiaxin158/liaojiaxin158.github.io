@@ -18,19 +18,18 @@
   gtag('config', 'G-LJ3PMGPVCK');
 </script>
   
-    <title>git 权威指南学习总结 | HelloDog</title>
+    <title>repo 总结 | HelloDog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="liaojiaxin">
     
 
     
-    <meta name="description" content="在实践中轻轻松松学习git权威指南">
+    <meta name="description" content="在实践中轻轻松松学习repo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 权威在实践中轻轻松松学习git权威指南指南学习总结">
-<meta property="og:url" content="https://liaojiaxin158.github.io/post/markdown/index.html">
+<meta property="og:title" content="git 权威在实践中轻轻松松学习repo">
 <meta property="og:site_name" content="HelloDog">
-<meta property="og:description" content="在实践中轻轻松松学习git权威指南">
+<meta property="og:description" content="在实践中轻轻松松学习repo">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://i.v2ex.co/3CAMX9Z2.png">
 <meta property="og:updated_time" content="2020-09-22T03:00:04.665Z">
@@ -42,6 +41,7 @@
     
     <link rel="alternative" href="/atom.xml" title="HelloDog" type="application/atom+xml">
     
+
     <link rel="icon" href="/img/favicon.ico">
     
     
@@ -97,14 +97,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/git_new/" title="git权威指南 学习总结" itemprop="url">git权威指南 学习总结</a>
+      <a href="/post/repo/" title="repo 学习总结" itemprop="url">repo 学习总结</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
 		
   <p class="article-time">
-    <time datetime="2020-02-10T02:36:01.000Z" itemprop="datePublished"> 发表于 2020-04-06</time>
+    <time datetime="2020-10-12T02:36:01.000Z" itemprop="datePublished"> 发表于 2019-10-12</time>
     
   </p>
 </header>
@@ -118,191 +118,42 @@
 		</div>
 		 -->
 		<!-- <p><img src="http://i.v2ex.co/3CAMX9Z2.png" alt=""></p>-->
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>工作中经常使用git命令，可以说对一些常见的的git命令已经很熟悉了，但是很多东西也是默默糊糊的，所以想系统的学习一下，所以选择了git的权威指南这本书。但是只是选择与工作中常见的章节来学习</p>
-<p>《Git权威指南》是Git领域的集大成之作，是一本关于Git的百科全书，在广度、深度和实战性上让同类作品望尘莫及。作者是国内顶尖的版本控制专家和咨询顾问之一，本书得到了Git官方维护者Junio C Hamano和ITeye创始人范凯（Robbin）先生等数位专家的高度认可和极力推荐，权威性毋庸置疑。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>无论是在华为终端还是鼎桥终端工作都使用到repo,所以就对repo来写一个总结，其实repo是Android为了方便管理多个git库而开发的Python脚本。repo的出现，并非为了取代git，而是为了让Android开发者更为有效的利用git</p>
+<p>repo是通过一个git库来管理项目的清单文件的，这个git库名字叫manifests,通过xml来管理git仓，和gerrit审核工具一起使用，而gerrit和jenkins的插件greeit trrige连接，容易做集成等自动化相关的事情</p>
 <blockquote>
-<p>git权威指南，你值得拥有</p>
+<p>repo 真是一个好工具</p>
 </blockquote>
 <hr>
-<h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><p>2020 年 04 月 10 日 - 更新内容<br>2020年 02 月 10 日 - 撰写初稿</p>
-<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/git_new/">https://liaojiaxin158.github.io/post/git_new/</a></p>
+<h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><p>2019 年 11 月 15 日 - 更新内容<br>2019年 10 月 12 日 - 撰写初稿</p>
+<p>阅读原文 - <a href="https://liaojiaxin158.github.io/post/repo/">https://liaojiaxin158.github.io/post/repo/</a></p>
 <hr>
-
-<h2 id="第一章git的初始化"><a href="#第一章git的初始化" class="headerlink" title="第一章git的初始化"></a>第一章git的初始化</h2><blockquote>
+<h2 id="repo的学习"><a href="repo的学习" class="headerlink" title="repo的学习"></a>repo的学习</h2><blockquote>
 <p>学 + 不断练习使用就会了</p>
 </blockquote>
-<p>本章主要讲解：</p>
-<p>一.创建版本库的个人信息</p>
-<p>二.别名设置</p>
-<p>三.初始化操</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_01/" target="_blank" rel="noopener">git初始化的学习</a></p>
+<p>一：repo介绍，repo环境</p>
+<p><a href="https://liaojiaxin158.github.io/blog/repo/repo_01" target="_blank" rel="noopener">关于repo(1)</a></p>
 
+<p>一：清单库与清单文件介绍，建立android代码库本地镜像，repo的命令集</p>
+<p><a href="https://liaojiaxin158.github.io/blog/repo/repo_02" target="_blank" rel="noopener">关于repo(2)</a></p>
 
-<h2 id="第二章git的安装"><a href="#第二章git的安装" class="headerlink" title="第二章git的安装"></a>第二章git的安装</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.linux下的安装</p>
-<p>二.linux二进制安装</p>
-<p>三.Mac上安装</p>
-<p>四.Windows安装</p>
-<p>五.命令补齐设置</p>
-<p>六.中文支持</p>
-<p>如果不详细可以百度</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_02/" target="_blank" rel="noopener">git安装的学习</a></p>
+<p>repo总结</p>
+<p><a href="https://liaojiaxin158.github.io/blog/repo/repo_03" target="_blank" rel="noopener">repo总结</a></p>
 
+<p>repo小技巧</p>
+<p><a href="https://liaojiaxin158.github.io/blog/repo/repo_04" target="_blank" rel="noopener">repo小技巧</a></p>
 
-<h2 id="第三章git的优缺点"><a href="#第三章git的优缺点" class="headerlink" title=""></a>第三章git的优缺点</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.git优点</p>
-<p>二.git缺点</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_03/" target="_blank" rel="noopener">git安装的优缺点</a></p>
+<p>附带repo环境文件（防止无外网的情况）</p>
+<p><a href="https://liaojiaxin158.github.io/blog/repo/repo_05" target="_blank" rel="noopener">repo环境文件</a></p>
 
+<p>repo快速同步代码的方法</p>
+<p><a href="https://liaojiaxin158.github.io/blog/repo/repo_06" target="_blank" rel="noopener">repo快速同步代码的方法</a></p>
 
-<h2 id="第四章git的初始化的思考"><a href="#第四章git的初始化的思考" class="headerlink" title=""></a>第四章git的初始化的思考</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.为什么工作区根目录下都有一个.git目录</p>
-<p>二.为何在.git的子目录执行git命令不会报错呢</p>
-<p>三.git将版本库目录放在工作区是否安全？</p>
-<p>四.git config命令的各参数有何区别呢？</p>
-<p>五.随意设置提交者姓名，是否不太安全</p>
-<p>六.别名设置的目的</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_05/" target="_blank" rel="noopener">git的初始化的思考</a></p>
+<p>小技巧应对git下载代码频繁输入密码问题</p>
+<p><a href="https://liaojiaxin158.github.io/blog/repo/repo_07" target="_blank" rel="noopener">小技巧应对git下载代码频繁输入密码问题</a></p>
 
-<h2 id="第六章git的对象的理解"><a href="#第六章git的对象的理解" class="headerlink" title=""></a>第六章git的对象的理解</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.git暂存区的基本操作</p>
-<p>二.理解git暂存区</p>
-<p>三.git diff的使用</p>
-<p>四.git commit -a切勿使用的原因</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_06/" target="_blank" rel="noopener">第六章git的对象的理解</a></p> 
-
-<h2 id="第七章git的重置的理解"><a href="#第七章git的重置的理解" class="headerlink" title=""></a>第七章git的重置的理解</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.git重置（回退提交）的基本操作</p>
-<p>二.reflog拯救重置机制介绍</p>
-<p>三.深入了解git reset命令(--soft --hard --mixed)</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_07/" target="_blank" rel="noopener">第七章git的重置的理解</a></p> 
-
-<h2 id="第八章git的恢复进度"><a href="#第八章git的恢复进度" class="headerlink" title=""></a>第八章git的恢复进度</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.git stash命令介绍</p>
-<p>二.git stash详解</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_08/" target="_blank" rel="noopener">第八章git的恢复进度</a></p>   
-
-<h2 id="第九章git基础操作"><a href="#第九章git基础操作" class="headerlink" title=""></a>第九章git基础操作</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.git增删改查等</p>
-<p>二.忽略的用法与语法</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_09/" target="_blank" rel="noopener">第九章git基础操作</a></p>  
-
-<h2 id="第十章git检出"><a href="#第十章git检出" class="headerlink" title=""></a>第十章git检出</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.HEAD的重置即git checkout检出</p>
-<p>二.详细学习git checkout 命令</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_10/" target="_blank" rel="noopener">第十章git检出</a></p>  
-
-<h2 id="第十一章学习git命令行"><a href="#第十一章学习git命令行" class="headerlink" title=""></a>第十章学习git命令行</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.版本表示法</p>
-<p>二.浏览日志：git log</p>
-<p>三.文件追溯：git blame</p>
-<p>四.二分查找：git bisect</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_11/" target="_blank" rel="noopener">第十一章学习git命令行</a></p> 
-
-<h2 id="第十二章git的一些撤销命令"><a href="#第十二章git的一些撤销命令" class="headerlink" title=""></a>第十二章git的一些撤销命令</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.获取历史版本</p>
-<p>二.常见的撤销命令</p>
-<p>三.丢弃历史提交</p>
-<p>四.反转提交</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_12/" target="_blank" rel="noopener">第十二章git的一些撤销命令</a></p> 
-
-<h2 id="第十三章学习git管理"><a href="#第十三章学习git管理" class="headerlink" title=""></a>第十三章学习git管理</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.对象和引用地址</p>
-<p>二.git管家：git-gc</p>
-<p>三.暂存区的临时对象</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_13/" target="_blank" rel="noopener">第十三章学习git管理</a></p>    
-	
-<h2 id="第十四章学习git克隆"><a href="#第十四章学习git克隆" class="headerlink" title=""></a>第十四章学习git克隆</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.了解git克隆</p>
-<p>二.对等工作区</p>
-<p>三.裸版本库</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_14/" target="_blank" rel="noopener">第十四章学习git克隆</a></p>
-	
-<h2 id="第十五章git协议与工作协同"><a href="#第十五章git协议与工作协同" class="headerlink" title=""></a>第十五章git协议与工作协同</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.Git支持的协议</p>
-<p>二.禁止非快进式推送</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_15/" target="_blank" rel="noopener">第十五章git协议与工作协同</a></p>	
-
-<h2 id="第十六章git解决冲突"><a href="#第十六章git解决冲突" class="headerlink" title=""></a>第十六章git解决冲突</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.拉回操作中的合并</p>
-<p>二.合并：自动合并</p>
-<p>三.冲突解决</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_16/" target="_blank" rel="noopener">第十六章git解决冲突</a></p>
-
-<h2 id="第十七章里程碑tag的学习"><a href="#第十七章里程碑tag的学习" class="headerlink" title=""></a>第十七章里程碑tag的学习</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.tag基本操作</p>
-<p>二.tag里程碑的用法</p>
-<p>三.用法详解</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_17/" target="_blank" rel="noopener">第十七章里程碑tag的学习</a></p>
-
-<h2 id="第十八章git分支学习"><a href="#第十八章git分支学习" class="headerlink" title=""></a>第十八章git分支学习</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.常见分支</p>
-<p>二.分支的用法</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_18/" target="_blank" rel="noopener">第十八章git分支学习</a></p>	
-
-<h2 id="第十九章git远程分支学习"><a href="#第十九章git分支学习" class="headerlink" title=""></a>第十九章git分支学习</h2><blockquote>
-<p>学 + 不断练习使用就会了</p>
-</blockquote>
-<p>本章主要讲解：</p>
-<p>一.远程分支信息</p>
-<p>二.分支追踪</p>
-<p>三.详解远程版本库</p>
-<p>四.push和pull操作与远程版本库的关系</p>
-<p>五.里程碑和远程版本库</p>
-<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_19/" target="_blank" rel="noopener">第十九章git分支学习</a></p>	
-	
-	
-	
-	
-</div>
+<p>repo命令的工作流</p>
+<p><img src="https://liaojiaxin158.github.io/blog/image/repo.png" alt="">  
+	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
@@ -318,7 +169,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://liaojiaxin158.github.io/post/markdown/" data-title="Markdown 学习路径 | HelloDog" data-tsina="" class="share clearfix">
+	  <div data-url="https://liaojiaxin158.github.io/post/repo/" data-title="repo 学习总结 | HelloDog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
