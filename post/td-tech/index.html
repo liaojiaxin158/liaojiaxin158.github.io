@@ -1,0 +1,683 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <script type="text/javascript">
+    var host = "liaojiaxin158.github.io";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+  </script> 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LJ3PMGPVCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LJ3PMGPVCK');
+</script>
+  
+    <title>鼎桥通信持续集成与配置总结 | HelloDog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="liaojiaxin">
+    
+
+    
+    <meta name="description" content="在实践中轻轻松松学习git权威指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 权威在实践中轻轻松松学习git权威指南指南学习总结">
+<meta property="og:url" content="https://liaojiaxin158.github.io/post/markdown/index.html">
+<meta property="og:site_name" content="HelloDog">
+<meta property="og:description" content="在实践中轻轻松松学习git权威指南">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://i.v2ex.co/3CAMX9Z2.png">
+<meta property="og:updated_time" content="2020-09-22T03:00:04.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="鼎桥通信持续集成与配置总结">
+<meta name="twitter:description" content="在实践中轻轻松松学习git权威指南">
+<meta name="twitter:image" content="http://i.v2ex.co/3CAMX9Z2.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="HelloDog" type="application/atom+xml">
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="HelloDog" title="HelloDog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="HelloDog">HelloDog</a></h1>
+				<h2 class="blog-motto">Keep Calm and Carry On</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/index/">索引 | Index</a></li>
+					
+						<li><a href="/archives/">归档 | Archives</a></li>
+					
+						<li><a href="/about/">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="search" class="st-default-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/git_new/" title="鼎桥通信持续集成与配置总结" itemprop="url">鼎桥通信持续集成与配置总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="liaojiaxin" target="_blank" itemprop="author">liaojiaxin</a>
+		
+ 
+</header>
+	<div class="article-content">
+<!-- 		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新记录"><span class="toc-number">2.</span> <span class="toc-text">更新记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习路径"><span class="toc-number">3.</span> <span class="toc-text">学习路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown-在线编辑器"><span class="toc-number">4.</span> <span class="toc-text">Markdown 在线编辑器</span></a></li></ol>
+		
+		</div>
+		 -->
+		<!-- <p><img src="http://i.v2ex.co/3CAMX9Z2.png" alt=""></p>-->
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>
+<p>公司:鼎桥通信（外派）三方公司：中软国际有限公司</p>
+<p>在职：2020-7-28-至今</p>
+<p>职位：持续集成与配置管理</p>
+<p>部门：安全终端</p>
+<p>工作简介:主要做手机定制业务，项目总体分为单系统项目和双系统项目，机型主要为华为荣耀系列，依托华为CI工具平台</p>
+<p>工作内容：分支管理，升级基线，版本构建等</p>
+<hr></hr>
+<h2 id="CI流程"><a href="#CI流程" class="headerlink" title="CI流程"></a>关于鼎桥的CI流程</h2>
+<p>鼎桥CI工作，主要是流程化的工作，华为机型比较多，导致项目也比较多，每个项目都需要单独拉取一套代码做版本构建出包。</p>
+<p>流程图如下:<a href="https://liaojiaxin158.github.io/blog/td-tech/CI_da.png"><img alt="CI流程图" title="点击查看大图" src="https://liaojiaxin158.github.io/blog/td-tech/CI.png"></a></p>
+<p>二.别名设置</p>
+<p>三.初始化操</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_01/" target="_blank" rel="noopener">git初始化的学习</a></p>
+
+
+<h2 id="第二章git的安装"><a href="#第二章git的安装" class="headerlink" title="第二章git的安装"></a>第二章git的安装</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.linux下的安装</p>
+<p>二.linux二进制安装</p>
+<p>三.Mac上安装</p>
+<p>四.Windows安装</p>
+<p>五.命令补齐设置</p>
+<p>六.中文支持</p>
+<p>如果不详细可以百度</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_02/" target="_blank" rel="noopener">git安装的学习</a></p>
+
+
+<h2 id="第三章git的优缺点"><a href="#第三章git的优缺点" class="headerlink" title=""></a>第三章git的优缺点</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.git优点</p>
+<p>二.git缺点</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_03/" target="_blank" rel="noopener">git安装的优缺点</a></p>
+
+
+<h2 id="第四章git的初始化的思考"><a href="#第四章git的初始化的思考" class="headerlink" title=""></a>第四章git的初始化的思考</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.为什么工作区根目录下都有一个.git目录</p>
+<p>二.为何在.git的子目录执行git命令不会报错呢</p>
+<p>三.git将版本库目录放在工作区是否安全？</p>
+<p>四.git config命令的各参数有何区别呢？</p>
+<p>五.随意设置提交者姓名，是否不太安全</p>
+<p>六.别名设置的目的</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_05/" target="_blank" rel="noopener">git的初始化的思考</a></p>
+
+<h2 id="第六章git的对象的理解"><a href="#第六章git的对象的理解" class="headerlink" title=""></a>第六章git的对象的理解</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.git暂存区的基本操作</p>
+<p>二.理解git暂存区</p>
+<p>三.git diff的使用</p>
+<p>四.git commit -a切勿使用的原因</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_06/" target="_blank" rel="noopener">第六章git的对象的理解</a></p> 
+
+<h2 id="第七章git的重置的理解"><a href="#第七章git的重置的理解" class="headerlink" title=""></a>第七章git的重置的理解</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.git重置（回退提交）的基本操作</p>
+<p>二.reflog拯救重置机制介绍</p>
+<p>三.深入了解git reset命令(--soft --hard --mixed)</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_07/" target="_blank" rel="noopener">第七章git的重置的理解</a></p> 
+
+<h2 id="第八章git的恢复进度"><a href="#第八章git的恢复进度" class="headerlink" title=""></a>第八章git的恢复进度</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.git stash命令介绍</p>
+<p>二.git stash详解</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_08/" target="_blank" rel="noopener">第八章git的恢复进度</a></p>   
+
+<h2 id="第九章git基础操作"><a href="#第九章git基础操作" class="headerlink" title=""></a>第九章git基础操作</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.git增删改查等</p>
+<p>二.忽略的用法与语法</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_09/" target="_blank" rel="noopener">第九章git基础操作</a></p>  
+
+<h2 id="第十章git检出"><a href="#第十章git检出" class="headerlink" title=""></a>第十章git检出</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.HEAD的重置即git checkout检出</p>
+<p>二.详细学习git checkout 命令</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_10/" target="_blank" rel="noopener">第十章git检出</a></p>  
+
+<h2 id="第十一章学习git命令行"><a href="#第十一章学习git命令行" class="headerlink" title=""></a>第十章学习git命令行</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.版本表示法</p>
+<p>二.浏览日志：git log</p>
+<p>三.文件追溯：git blame</p>
+<p>四.二分查找：git bisect</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_11/" target="_blank" rel="noopener">第十一章学习git命令行</a></p> 
+
+<h2 id="第十二章git的一些撤销命令"><a href="#第十二章git的一些撤销命令" class="headerlink" title=""></a>第十二章git的一些撤销命令</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.获取历史版本</p>
+<p>二.常见的撤销命令</p>
+<p>三.丢弃历史提交</p>
+<p>四.反转提交</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_12/" target="_blank" rel="noopener">第十二章git的一些撤销命令</a></p> 
+
+<h2 id="第十三章学习git管理"><a href="#第十三章学习git管理" class="headerlink" title=""></a>第十三章学习git管理</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.对象和引用地址</p>
+<p>二.git管家：git-gc</p>
+<p>三.暂存区的临时对象</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_13/" target="_blank" rel="noopener">第十三章学习git管理</a></p>    
+	
+<h2 id="第十四章学习git克隆"><a href="#第十四章学习git克隆" class="headerlink" title=""></a>第十四章学习git克隆</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.了解git克隆</p>
+<p>二.对等工作区</p>
+<p>三.裸版本库</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_14/" target="_blank" rel="noopener">第十四章学习git克隆</a></p>
+	
+<h2 id="第十五章git协议与工作协同"><a href="#第十五章git协议与工作协同" class="headerlink" title=""></a>第十五章git协议与工作协同</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.Git支持的协议</p>
+<p>二.禁止非快进式推送</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_15/" target="_blank" rel="noopener">第十五章git协议与工作协同</a></p>	
+
+<h2 id="第十六章git解决冲突"><a href="#第十六章git解决冲突" class="headerlink" title=""></a>第十六章git解决冲突</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.拉回操作中的合并</p>
+<p>二.合并：自动合并</p>
+<p>三.冲突解决</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_16/" target="_blank" rel="noopener">第十六章git解决冲突</a></p>
+
+<h2 id="第十七章里程碑tag的学习"><a href="#第十七章里程碑tag的学习" class="headerlink" title=""></a>第十七章里程碑tag的学习</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.tag基本操作</p>
+<p>二.tag里程碑的用法</p>
+<p>三.用法详解</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_17/" target="_blank" rel="noopener">第十七章里程碑tag的学习</a></p>
+
+<h2 id="第十八章git分支学习"><a href="#第十八章git分支学习" class="headerlink" title=""></a>第十八章git分支学习</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.常见分支</p>
+<p>二.分支的用法</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_18/" target="_blank" rel="noopener">第十八章git分支学习</a></p>	
+
+<h2 id="第十九章git远程分支学习"><a href="#第十九章git分支学习" class="headerlink" title=""></a>第十九章git分支学习</h2><blockquote>
+<p>学 + 不断练习使用就会了</p>
+</blockquote>
+<p>本章主要讲解：</p>
+<p>一.远程分支信息</p>
+<p>二.分支追踪</p>
+<p>三.详解远程版本库</p>
+<p>四.push和pull操作与远程版本库的关系</p>
+<p>五.里程碑和远程版本库</p>
+<p>详情--><a href="https://liaojiaxin158.github.io/blog/git/git_19/" target="_blank" rel="noopener">第十九章git分支学习</a></p>	
+	
+	
+	
+	
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://liaojiaxin158.github.io/post/markdown/" data-title="Markdown 学习路径 | HelloDog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新记录"><span class="toc-number">2.</span> <span class="toc-text">更新记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习路径"><span class="toc-number">3.</span> <span class="toc-text">学习路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown-在线编辑器"><span class="toc-number">4.</span> <span class="toc-text">Markdown 在线编辑器</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="liaojiaxin158" data-theme="medium"></div>
+<script type="text/javascript" src="//lab.lepture.com/github-cards/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/学习-Study/" title="学习 | Study">学习 | Study<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活-Life/" title="生活 | Life">生活 | Life<sup>0</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/软件-Soft/" title="软件 | Soft">软件 | Soft<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.linkedin.com/in/jiaxinliao" target="_blank" title="LinkedIn">LinkedIn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m OX. This is my blog on GitHub. <br/>
+			Keep Calm and Carry On.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/liaojiaxin158" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/jiaxinliao" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2020 
+		
+		<a href="/about" target="_blank" title="liaojiaxin">liaojiaxin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'liaojiaxin';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77732745-1', 'liaojiaxin158.github.io');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c2c5fc7d844d0973d9f77abd87f49c3c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- swiftype Begin -->
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','_4qDmKrBPn9Es3UvQHT4','2.0.0');
+</script>
+
+<!-- swiftype End -->
+
+  </body>
+</html>
