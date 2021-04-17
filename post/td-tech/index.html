@@ -130,7 +130,16 @@
 <h2 id="CI流程"><a href="#CI流程" class="headerlink" title="CI流程"></a>关于鼎桥的CI流程</h2>
 <p>鼎桥CI工作，主要是流程化的工作，华为机型比较多，导致项目也比较多，每个项目都需要单独拉取一套代码做版本构建出包。</p>
 <p>流程图如下:<img  title="点击查看大图" src="https://liaojiaxin158.github.io/blog/td-tech/CI.png"></p>
-
+<p>步骤1-步骤2：版本经理拉取会议，明确CI，开发，测试的任务</p>
+<p>CI要求：规定当前版本版本号，出包，做OTA，归档VMP（每个版本大同小异</p>
+<p>开发要求：协议，应用，平台，native,框架各自模块的开发需求</p>
+<p>测试要求：编写测试用例，以及重要功能测试</p>
+<hr></hr>
+<p>步骤2-步骤3：主要是CI的工作，开发测试做准备工作,CI从华为VMP将当前版本的基线拷贝道鼎桥的服务器，通过python小工具将相关的华为工具仓，pipeline仓，以及config仓等git仓提取出来
+然后通过分支管理，并将配置仓中xml中git仓推到鼎桥的服务器做本地化，修改一些固定的地方符合鼎桥这边的情况，通过repo组装成repo配置仓。用过基线文件提取manifes.xml拉取华为的芯片代码以及系统代码推到
+鼎桥gerrit上，并通过基线cherry-pick文件，将相关华为gerrit的提交cherry-pick到鼎桥的服务器，导出华为jenkins工程，将参数化构建的参数修改符合鼎桥自己情况的参数，基于丁桥应用模块拉取
+自己鼎桥自己的相关仓，stui仓，以及通过华为的excel拉取二进制仓，最后将拉取所有的仓，芯片仓，系统仓，配置仓，二进制发给开发</p>
+<hr></hr>
 
 <h2 id="第二章git的安装"><a href="#第二章git的安装" class="headerlink" title="第二章git的安装"></a>第二章git的安装</h2><blockquote>
 <p>学 + 不断练习使用就会了</p>
